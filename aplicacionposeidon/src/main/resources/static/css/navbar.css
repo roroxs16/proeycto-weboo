@@ -38,6 +38,17 @@ nav{
 		font-size: 14px;
 }
 
+img {
+    width: 100%;
+    height: auto; 
+    padding: -200px;  
+}
+
+#carouselExampleInterval{
+	height:10em;
+	
+}
+
 @media screen and(max-width: 1024px){
 	.nav-links{
 		width: 60%;
