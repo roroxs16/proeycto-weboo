@@ -13,3 +13,19 @@
 	height: 1em;
 	
 }
+
+
+#button {
+	background-color: #cfcfcf;
+	background-image:
+	border: none;
+	color: black;
+	font-size:2em;
+	padding: 10%;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 5px;
+	cursor: pointer;
+	border-radius: 25px;
+	
+}
