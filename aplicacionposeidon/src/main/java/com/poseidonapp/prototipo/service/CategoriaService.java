@@ -13,7 +13,7 @@ public interface CategoriaService {
 	
 	void delete(Categoria categoria);
 
-	Optional<Categoria> findById(int id);
+	Categoria findId(int id);
 	
 
 	public void findOne(int id);

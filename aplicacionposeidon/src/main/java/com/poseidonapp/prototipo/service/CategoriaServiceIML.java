@@ -42,16 +42,18 @@ public class CategoriaServiceIML implements CategoriaService {
 	}
 
 	@Override
-	public Optional<Categoria> findById(int id) {
-		// TODO Auto-generated method stub
-      return		categoriaRepository.findById(id);
-
-	}
-
-	@Override
 	public void findOne(int id) {
 		
 		categoriaRepository.deleteById(id);
+	}
+
+	@Override
+	public Categoria findId(int id) {
+		Optional<Categoria> categoria=categoriaRepository.findById(id);
+		if(categoria.isPresent()) {
+			return categoria.get();
+		}
+		return null;
 	}
 
 }
