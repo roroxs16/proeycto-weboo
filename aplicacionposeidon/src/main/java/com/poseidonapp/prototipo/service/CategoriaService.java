@@ -12,5 +12,6 @@ public interface CategoriaService {
 	
 	void delete(Categoria categoria);
 	
+	public void findOne(int id);
 	
 }
