@@ -28,8 +28,14 @@ public class CategoriaServiceIML implements CategoriaService {
 
 	@Override
 	public void delete(Categoria categoria) {
-		// TODO Auto-generated method stub
+		categoriaRepository.deleteById(categoria.getId());
 		
+	}
+
+	@Override
+	public void findOne(int id) {
+		
+		categoriaRepository.deleteById(id);
 	}
 
 }

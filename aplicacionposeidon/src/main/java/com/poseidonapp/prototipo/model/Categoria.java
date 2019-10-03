@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="categoria_producto")
@@ -23,18 +24,23 @@ public class Categoria implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	
+
 	@Column(name="nombre")
 	private String nombreCategoria;
 
-	
+
 
 	public Categoria(int id, String nombreCategoria) {
-		
+	
 		this.id = id;
 		this.nombreCategoria = nombreCategoria;
+		
 	}
-	
+
+
+
+
+
 
 
 	public Categoria() {
