@@ -2,7 +2,6 @@ package com.poseidonapp.prototipo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
@@ -11,5 +10,14 @@ public class HomeController {
     public String welcome() {
         return "home";
     }
+	
+	@GetMapping("/aboutus")
+	public String about() {
+		return "aboutus";
+	}
+	@GetMapping("/contacto")
+	public String contacto() {
+		return "contacto";
+	}
 	
 }
