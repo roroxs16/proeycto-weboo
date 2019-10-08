@@ -41,11 +41,7 @@ public class CategoriaServiceIML implements CategoriaService {
 		categoriaRepository.deleteById(id);
 	}
 
-	@Override
-	public void findOne(int id) {
-		
-		categoriaRepository.deleteById(id);
-	}
+	
 
 	@Override
 	public Categoria findId(int id) {

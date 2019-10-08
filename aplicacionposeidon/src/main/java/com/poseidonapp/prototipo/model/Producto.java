@@ -19,7 +19,10 @@ public class Producto {
 		private int id;
 		
 		@Column(name="nombre")
-		private String nombre;
+		private String nombreProducto;
+		
+		@Column(name="cantidad")
+		private int cantidad;
 		
 		@Column(name="valor")
 		private int valor;
@@ -30,8 +33,8 @@ public class Producto {
 		@Column(name="img")
 		private String imagen;
 		
-	/*	@ManyToOne(fetch=FetchType.LAZY)
-		private Categoria  categoria;*/
+		@ManyToOne(fetch=FetchType.LAZY)
+		private Categoria  categoria;
 
 		public int getId() {
 			return id;
@@ -41,12 +44,13 @@ public class Producto {
 			this.id = id;
 		}
 
-		public String getNombre() {
-			return nombre;
+	
+		public String getNombreProducto() {
+			return nombreProducto;
 		}
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
+		public void setNombreProducto(String nombreProducto) {
+			this.nombreProducto = nombreProducto;
 		}
 
 		public int getValor() {
@@ -71,6 +75,28 @@ public class Producto {
 
 		public void setImagen(String imagen) {
 			this.imagen = imagen;
+		}
+
+		public int getCantidad() {
+			return cantidad;
+		}
+
+		public void setCantidad(int cantidad) {
+			this.cantidad = cantidad;
+		}
+
+		public Producto(int id, String nombreProducto, int cantidad, int valor, String descripcion, String imagen) {
+			
+			this.id = id;
+			this.nombreProducto = nombreProducto;
+			this.cantidad = cantidad;
+			this.valor = valor;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+		}
+
+		public Producto() {
+	
 		}
 		
 		

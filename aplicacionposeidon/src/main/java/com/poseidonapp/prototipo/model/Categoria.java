@@ -33,8 +33,8 @@ public class Categoria implements Serializable{
 	@Column(name="nombre")
 	private String nombreCategoria;
 
-	/*@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private List<Producto> productos;*/
+	@OneToMany(mappedBy="categoria", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Producto> productos;
 
 	public Categoria(int id, String nombreCategoria) {
 	
@@ -44,11 +44,11 @@ public class Categoria implements Serializable{
 	}
 	
 	public Categoria() {
-			//productos= new ArrayList<Producto>();
+			productos= new ArrayList<Producto>();
 	}
 
 
-/*	public List<Producto> getProductos() {
+	public List<Producto> getProductos() {
 		return productos;
 	}
 
@@ -62,7 +62,7 @@ public class Categoria implements Serializable{
 	public void addProducto (Producto producto) {
 		productos.add(producto);
 	}
-*/
+
 	
 
 
