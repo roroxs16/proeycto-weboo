@@ -34,6 +34,7 @@ public class Producto {
 		private String imagen;
 		
 		@ManyToOne(fetch=FetchType.LAZY)
+		@JoinColumn(name = "categoria_producto_id", nullable = false)
 		private Categoria  categoria;
 
 		public int getId() {
@@ -98,7 +99,19 @@ public class Producto {
 		public Producto() {
 	
 		}
-		
-		
+
+		public Categoria getCategoria() {
+			return categoria;
+		}
+
+		public void setCategoria(Categoria categoria) {
+			this.categoria = categoria;
+		}
+
+		@Override
+		public String toString() {
+			return "Producto [id=" + id + ", nombreProducto=" + nombreProducto + ", cantidad=" + cantidad + ", valor="
+					+ valor + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + "]";
+		}
 		
 }

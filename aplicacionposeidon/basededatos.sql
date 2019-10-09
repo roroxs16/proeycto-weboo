@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `rcifuent`.`detalle` (
   INDEX `fk_detalle_usuario1_idx` (`usuario_id` ASC) ,
   CONSTRAINT `fk_detalle_usuario1`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `mydb`.`usuario` (`id`)
+    REFERENCES `rcifuent`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

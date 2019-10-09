@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.poseidonapp.prototipo.model.Categoria;
+import com.poseidonapp.prototipo.model.Producto;
 import com.poseidonapp.prototipo.service.CategoriaService;
 import com.poseidonapp.prototipo.service.ProductoService;
 
@@ -61,9 +63,12 @@ public class CategoriaController {
 	}
 	//guarda la categoria
 	@PostMapping("/savecategoriasucces")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, Model model) {
+	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, Model model, SessionStatus status) {
+		
+		
 		
 		categoriaService.save(categoria);
+		status.setComplete();
 		return "redirect:/categoria/";
 		
 	}
@@ -83,7 +88,8 @@ public class CategoriaController {
 			return"redirect:/";
 		}
 		
-		model.addAttribute("categoria", categoria);
+		model.addAttribute("productos", categoria.getProductos());
+		
 		return "verproductos";
 	}
 	

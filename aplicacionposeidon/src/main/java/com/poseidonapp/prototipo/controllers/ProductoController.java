@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,6 +38,7 @@ import com.poseidonapp.prototipo.service.ProductoService;
 
 @Controller
 @RequestMapping("/producto")
+@SessionAttributes("producto")
 public class ProductoController {
 
 	@Autowired
@@ -69,14 +71,17 @@ public class ProductoController {
 	
 	
 	@GetMapping("/formularioproducto/{categoriaId}")
-	public String formularioProducto(@PathVariable (value="id") int clienteId, Model model) {
+	public String formularioProducto(@PathVariable(value="categoriaId") int clienteId, Model model) {
 		
 		Categoria categoria= categoriaService.findId(clienteId);
 		
 		if(categoria==null) {
 			return "redirect:/";
 		}
-		model.addAttribute("producto", new Producto());
+		
+		Producto producto= new Producto();
+		producto.setCategoria(categoria);
+		model.addAttribute("producto", producto);
 		
 		return "addproducto";
 		
@@ -121,7 +126,7 @@ public class ProductoController {
 		}
 		
 		productoService.save(producto);
-		return "redirect:/producto/";
+		return "redirect:/categoria/";
 	}
 	
 	
@@ -167,7 +172,7 @@ public class ProductoController {
 			
 		}
 		
-		return "redirect:/producto/";
+		return "redirect:/categoria/";
     }
 	
 	@RequestMapping(value="/updateproducto/{id}", method=RequestMethod.GET)
@@ -187,6 +192,7 @@ public class ProductoController {
 	@RequestMapping(value="/updateproductosucces", method= RequestMethod.POST)
 	public String updateProducto(Model model, @ModelAttribute ("producto") Producto producto) {
 		
+		System.out.println(producto);
 		productoService.save(producto);
 		
 		return "redirect:/producto/";

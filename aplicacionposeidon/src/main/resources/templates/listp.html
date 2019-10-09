@@ -10,7 +10,7 @@
 <title>Poseidon</title>
 
 <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet" type="text/css" href="/css/listar.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
 <script type="text/javascript"
@@ -29,7 +29,7 @@
 			<div class="card-body">
 				<div th:switch="${productos}" class="container my-5">
 					<p class="my-5">
-						<a href="/producto/formularioproducto" class="btn btn-primary"><i
+						<a th:href="@{/producto/formularioproducto/} + ${producto.categoria.getId()}" class="btn btn-primary"><i
 							class="fas fa-user-plus ml-2"> Producto</i></a>
 					</p>
 					<div class="col-md-10">
@@ -46,7 +46,7 @@
 									
 										<th>Editar</th>
 										<th>Eliminar</th>
-										<th>Categoria</th>
+									
 									</tr>
 								</thead>
 								<tbody>

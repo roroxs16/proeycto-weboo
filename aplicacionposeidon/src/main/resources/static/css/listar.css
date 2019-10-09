@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+.search-field {
+	background-color: #ddd;
+	border: none;
+	color: black;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 16px;
+}
+
+#btnAgregar {
+	background-color: #f24d43;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 20px;
+}
+
+label {
+	font-weight: 300;
+	font-size: 1em;
+	margin-bottom: 5px;
+	color: rgb(245, 55, 51);
+}
+
+.fa-trash-alt,.fa-user-plus,.fa-eye, .fa-pencil-alt{
+	color: #fff;
+}
