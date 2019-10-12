@@ -20,27 +20,46 @@
 <body>
 
 	<div th:insert="navbar">...</div>
-	<H2 align="center"> Contacto </H2>
-	<br>
-	<h3 align="center">Direccion</h3>
-	<p align="center"> P. Sherman, calle Wallaby, 42, Sydney</p>
-	<h3 align="center">Telefono</h3>
-	<p align="center"> (+56) 988676227</p>
-	<h3 align="center">Horario de atencion</h3>
-	<p align="center"> De lunes a viernes: 08:00-16:00 hrs</p>
-	<p align="center"> Sabado:             08:00-13:00 hrs</p>
-	<h3 align="center">E-mail</h3>
-	<p align="center"> poseidon@peces.cl</p>
-	<div class="contenedor">
-	<img src="/img/contacto.jpg" alt="Imagen no disponible" class="img-thumbnail rounded turn-bottom" style="max-width: 25%; ">
-	
-	
-	</div>
-	
-	
-	
 
-	
-<div th:insert="footer"></div>
+	<div class="container">
+		<nav style="background-color: white; padding-left: 20px;"
+			aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0"
+				style="padding-top: 30px; padding-bottom: 5px;">
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page">Contacto</li>
+
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
+	<div class="card">
+	<div class="card-body">
+		<H2 align="center">Contacto</H2>
+		<br>
+		<h3 align="center">Direccion</h3>
+		<p align="center">P. Sherman, calle Wallaby, 42, Sydney</p>
+		<h3 align="center">Telefono</h3>
+		<p align="center">(+56) 988676227</p>
+		<h3 align="center">Horario de atencion</h3>
+		<p align="center">De lunes a viernes: 08:00-16:00 hrs</p>
+		<p align="center">Sabado: 08:00-13:00 hrs</p>
+		<h3 align="center">E-mail</h3>
+		<p align="center">poseidon@peces.cl</p>
+		<div class="contenedor" style="padding-bottom: 20px;">
+			<img src="/img/contacto.jpg" alt="Imagen no disponible"
+				class="img-thumbnail rounded turn-bottom" style="max-width: 25%;">
+
+
+		</div>
+</div>
+	</div>
+
+
+
+
+
+	<div th:insert="footer"></div>
 </body>
 </html>

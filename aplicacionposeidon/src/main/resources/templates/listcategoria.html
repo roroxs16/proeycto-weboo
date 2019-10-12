@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
@@ -22,9 +23,18 @@
 <body>
 
 	<div th:insert="navbar">...</div>
-
+<div class="container" >
+		<nav style= "background-color:white; padding-left: 20px; " aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0" style="padding-top: 30px; padding-bottom: 5px;">
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page">Categorías</li>
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
 	<div class="container">
-		<div class="container my-2">
+		<div class="container my-2" style="padding-bottom: 20px">
 			<div class="card">
 				<div class="card-body">
 					<div th:switch="${categorias}" class="container my-5">
@@ -91,5 +101,5 @@
 	</div>
 	<div th:insert="footer"></div>
 
-</body>
+
 </html>

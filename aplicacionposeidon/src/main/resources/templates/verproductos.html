@@ -20,10 +20,25 @@
 </head>
 <body>
 
+
  <div th:insert="navbar">...</div>
  
  <div class="container">
-	<div class="container my-2">
+		<nav style="background-color: white; padding-left: 20px;"
+			aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0" style="padding-top: 30px; padding-bottom: 5px;">
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page"><a
+					href="/categoria/">Categorías</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Productos</li>
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
+ 
+ <div class="container">
+	<div class="container my-2" style="padding-bottom:20px;">
 		<div class="card">
 			<div class="card-body">
 				<div th:switch="${productos}" class="container my-5">
@@ -66,14 +81,22 @@
 								</tbody>
 							</table>
 						</div>
+						
 
+
+										
+
+						</div>
 					</div>
 				</div>
+				<div>
+				<a class="btn btn-danger" th:href="@{/categoria/}" style="margin: auto;"> Volver</a>
+				</div>
+				
 			</div>
 		</div>
+
 	</div>
-	
-</div>		
-<div th:insert="footer"></div>
+	<div th:insert="footer"></div>
 </body>
 </html>
