@@ -9,9 +9,7 @@
 
 <title>Poseidon</title>
 
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
-	rel="stylesheet">
+
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
@@ -34,11 +32,16 @@
 							<a href="/categoria/formulariocategoria" class="btn btn-primary"><i
 								class="fas fa-user-plus ml-2"> Agregar categoria</i></a>
 						</p>
+						<div
+							th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+							th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+						</div>
 
 						<div class="col-md-10">
 							<h2 th:case="null">No hay categorias!</h2>
 							<div th:case="*">
-								<table class="table table-striped table-bordered table-responsive-md">
+								<table
+									class="table table-striped table-bordered table-responsive-md">
 									<thead class="thead-dark">
 										<tr>
 											<th>ID</th>
@@ -60,13 +63,12 @@
 
 											<td><a
 												th:href="@{/categoria/delete/{id}(id=${categoria.id})}"
-												class="btn btn-danger"><i
-													class="fas fa-user-times ml-2"></i></a></td>
+												class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
 											<td><a
-													th:href="@{/producto/formularioproducto/} + ${categoria.id}"
-													class="btn btn-success btn-xs"><i
+												th:href="@{/producto/formularioproducto/} + ${categoria.id}"
+												class="btn btn-success btn-xs"><i
 													class="fas fa-user-plus ml-2"> Agregar Producto</i></a></td>
-											
+
 											<td><a
 												th:href="@{/categoria/listcategoria/{id}(id=${categoria.id})}"
 												class="btn btn-warning">Productos</a></td>

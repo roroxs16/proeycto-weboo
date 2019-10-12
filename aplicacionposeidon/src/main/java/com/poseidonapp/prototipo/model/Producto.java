@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="producto")
@@ -18,17 +20,22 @@ public class Producto {
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		private int id;
 		
+		@NotEmpty
 		@Column(name="nombre")
 		private String nombreProducto;
 		
+		@NotNull
 		@Column(name="cantidad")
 		private int cantidad;
 		
+		@NotNull
 		@Column(name="valor")
 		private int valor;
 		
+		@NotEmpty
 		@Column(name="descripcion")
 		private String descripcion;
+		
 		
 		@Column(name="img")
 		private String imagen;
@@ -36,6 +43,24 @@ public class Producto {
 		@ManyToOne(fetch=FetchType.LAZY)
 		@JoinColumn(name = "categoria_producto_id", nullable = false)
 		private Categoria  categoria;
+
+		
+		
+		public Producto() {
+			
+		}
+
+		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
+				@NotEmpty String descripcion, String imagen, Categoria categoria) {
+			
+			this.id = id;
+			this.nombreProducto = nombreProducto;
+			this.cantidad = cantidad;
+			this.valor = valor;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+			this.categoria = categoria;
+		}
 
 		public int getId() {
 			return id;
@@ -86,19 +111,7 @@ public class Producto {
 			this.cantidad = cantidad;
 		}
 
-		public Producto(int id, String nombreProducto, int cantidad, int valor, String descripcion, String imagen) {
-			
-			this.id = id;
-			this.nombreProducto = nombreProducto;
-			this.cantidad = cantidad;
-			this.valor = valor;
-			this.descripcion = descripcion;
-			this.imagen = imagen;
-		}
-
-		public Producto() {
-	
-		}
+		
 
 		public Categoria getCategoria() {
 			return categoria;
