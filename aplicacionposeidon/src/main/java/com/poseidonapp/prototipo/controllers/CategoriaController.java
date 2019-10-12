@@ -57,8 +57,10 @@ public class CategoriaController {
 	}
 	//guarda la categoria
 	@PostMapping("/savecategoriasucces")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, Model model) {
-		
+	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+            return "addcategoria";
+        }
 		categoriaService.save(categoria);
 		return "redirect:/categoria/";
 		
@@ -75,6 +77,7 @@ public class CategoriaController {
 
      //elimina por id
 	@GetMapping("delete/{id}")
+	
     public String deleteCategoria(@PathVariable("id") int id, Model model) throws Exception {
         categoriaService.deleteById(id);
         

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="categoria_producto")
@@ -24,54 +25,44 @@ public class Categoria implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-
+    @NotEmpty
 	@Column(name="nombre")
 	private String nombreCategoria;
-
-
-
-	public Categoria(int id, String nombreCategoria) {
-	
-		this.id = id;
-		this.nombreCategoria = nombreCategoria;
-		
-	}
-
-
-
-
-
-
+    
+    
 
 	public Categoria() {
 		
 	}
 
-
+	public Categoria(int id, @NotEmpty String nombreCategoria) {
+		
+		this.id = id;
+		this.nombreCategoria = nombreCategoria;
+	}
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getNombreCategoria() {
 		return nombreCategoria;
 	}
 
-
 	public void setNombreCategoria(String nombreCategoria) {
 		this.nombreCategoria = nombreCategoria;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+
 	
 	
 }
