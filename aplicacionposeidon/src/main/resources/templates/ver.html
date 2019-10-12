@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Poseidon</title>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+
+ <div th:insert="navbar">...</div>
+ 
+ 	<div class="container py-4">
+ 	<div class="card bg-light">
+	 	<div class= "card-header">
+	 	</div>
+	 	<div class="card-body">
+	 		<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/producto/uploads/' +${producto.imagen}}"/>
+	 		
+	 		<ul class="list-group">
+	 			<li class="list-group-item" th:text="${producto.nombreProducto}"></li>
+	 			<li class="list-group-item"	th:text="${producto.valor}"></li>
+	 			<li class="list-group-item"	th:text="${producto.descripcion}"></li>
+	 			<li class="list-group-item"	th:text="${producto.cantidad}"></li>
+	 		</ul>
+	 	</div>
+ 	</div>
+ 	</div>
+ 	
+ 
+<div th:insert="footer"></div>
+
+</body>
+</html>

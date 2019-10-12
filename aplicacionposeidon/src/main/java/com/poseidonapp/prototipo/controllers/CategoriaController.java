@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.poseidonapp.prototipo.model.Categoria;
+import com.poseidonapp.prototipo.model.Producto;
 import com.poseidonapp.prototipo.service.CategoriaService;
+import com.poseidonapp.prototipo.service.ProductoService;
 
 
 
@@ -36,12 +39,15 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
+	@Autowired
+	private ProductoService productoService;
+	
 	//funcionalidad de listar categorias
 	@RequestMapping("/")
 	public String listarCategoria(Model model) {
 		model.addAttribute("categorias", categoriaService.listAll());
 		
-		return "list";
+		return "listcategoria";
 	}
 
 	//agrega categoria
@@ -57,11 +63,17 @@ public class CategoriaController {
 	}
 	//guarda la categoria
 	@PostMapping("/savecategoriasucces")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, BindingResult result, Model model) {
+
+	
+
+	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, Model model, BindingResult result,SessionStatus status) {
 		if (result.hasErrors()) {
             return "addcategoria";
         }
+		
+		
 		categoriaService.save(categoria);
+		status.setComplete();
 		return "redirect:/categoria/";
 		
 	}
@@ -73,11 +85,26 @@ public class CategoriaController {
 	        
 	}*/
 	
+	//mostrar por id
+	@GetMapping("/listcategoria/{id}")
+	public String verProductosPorCategoria(@PathVariable("id") int id, Model model) {
+		Categoria categoria = categoriaService.findId(id);
+		if(categoria==null) {
+			return"redirect:/";
+		}
+		
+		model.addAttribute("productos", categoria.getProductos());
+		
+		return "verproductos";
+	}
 	
 
      //elimina por id
-	@GetMapping("delete/{id}")
+
 	
+
+	@GetMapping("/delete/{id}")
+
     public String deleteCategoria(@PathVariable("id") int id, Model model) throws Exception {
         categoriaService.deleteById(id);
         
@@ -86,7 +113,7 @@ public class CategoriaController {
 		if(list == null) System.out.println("list es null");
 		if(list.isEmpty()) System.out.println("La lista esta vacia");
 		model.addAttribute("categorias",list);
-		return "list";
+		return "listcategoria";
     }
 	
 	//-----------------update----------------------
@@ -104,7 +131,7 @@ public class CategoriaController {
 	    }
 	 
 	    @RequestMapping(value= "/updatecategoriasucces", method = RequestMethod.POST)
-	    public String updateCategoria( Model model, @ModelAttribute ("categoria")Categoria categoria) {
+	    public String updateCategoria( Model model, @ModelAttribute ("categoria") Categoria categoria) {
 	        categoriaService.save(categoria);
 	        
 	        return "redirect:/categoria/";

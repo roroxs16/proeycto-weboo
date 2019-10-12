@@ -16,7 +16,7 @@ public interface CategoriaService {
 	Categoria findId(int id);
 	
 
-	public void findOne(int id);
+
 	
 
 	void deleteById(int id);

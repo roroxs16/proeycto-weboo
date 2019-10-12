@@ -2,9 +2,12 @@ package com.poseidonapp.prototipo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +19,10 @@ public class Producto {
 		private int id;
 		
 		@Column(name="nombre")
-		private String nombre;
+		private String nombreProducto;
+		
+		@Column(name="cantidad")
+		private int cantidad;
 		
 		@Column(name="valor")
 		private int valor;
@@ -26,6 +32,10 @@ public class Producto {
 		
 		@Column(name="img")
 		private String imagen;
+		
+		@ManyToOne(fetch=FetchType.LAZY)
+		@JoinColumn(name = "categoria_producto_id", nullable = false)
+		private Categoria  categoria;
 
 		public int getId() {
 			return id;
@@ -35,12 +45,13 @@ public class Producto {
 			this.id = id;
 		}
 
-		public String getNombre() {
-			return nombre;
+	
+		public String getNombreProducto() {
+			return nombreProducto;
 		}
 
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
+		public void setNombreProducto(String nombreProducto) {
+			this.nombreProducto = nombreProducto;
 		}
 
 		public int getValor() {
@@ -66,7 +77,41 @@ public class Producto {
 		public void setImagen(String imagen) {
 			this.imagen = imagen;
 		}
-		
-		
+
+		public int getCantidad() {
+			return cantidad;
+		}
+
+		public void setCantidad(int cantidad) {
+			this.cantidad = cantidad;
+		}
+
+		public Producto(int id, String nombreProducto, int cantidad, int valor, String descripcion, String imagen) {
+			
+			this.id = id;
+			this.nombreProducto = nombreProducto;
+			this.cantidad = cantidad;
+			this.valor = valor;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+		}
+
+		public Producto() {
+	
+		}
+
+		public Categoria getCategoria() {
+			return categoria;
+		}
+
+		public void setCategoria(Categoria categoria) {
+			this.categoria = categoria;
+		}
+
+		@Override
+		public String toString() {
+			return "Producto [id=" + id + ", nombreProducto=" + nombreProducto + ", cantidad=" + cantidad + ", valor="
+					+ valor + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + "]";
+		}
 		
 }
