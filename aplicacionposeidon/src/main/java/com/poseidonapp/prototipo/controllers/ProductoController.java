@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -91,8 +92,10 @@ public class ProductoController {
 	
 	
 	@RequestMapping(value = "/saveproductosucces",method=RequestMethod.POST)
-	public String formularioProductoSave(@Valid Producto producto, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash ) throws Exception {
-		
+	public String formularioProductoSave(@Valid Producto producto, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash ) throws Exception {
+		if (result.hasErrors()) {
+            return "addproducto";
+        }
 		if(!foto.isEmpty()) {
 		
 			
@@ -125,7 +128,11 @@ public class ProductoController {
 			}
 		}
 		
+		
 		productoService.save(producto);
+		flash
+        .addFlashAttribute("mensaje", "Producto agregado correctamente")
+        .addFlashAttribute("clase", "success");
 		return "redirect:/categoria/";
 	}
 	
@@ -185,7 +192,7 @@ public class ProductoController {
 			model.addAttribute("producto",new Producto());
 		}
 		
-		return "addproducto";
+		return "updateproducto";
 	}
 	
 	
