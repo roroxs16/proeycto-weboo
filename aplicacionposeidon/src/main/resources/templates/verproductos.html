@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -8,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Poseidon</title>
-
 
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <link rel="stylesheet"
@@ -22,21 +21,26 @@
 <body>
 
 
-	<div th:insert="navbar">...</div>
 
-	<div class="container">
+ <div th:insert="navbar">...</div>
+ 
+ <div class="container">
+
 		<nav style="background-color: white; padding-left: 20px;"
 			aria-label="breadcrumb">
 			<!--MIGAS DE PAN-->
 			<ol class="breadcrumb bg-white pl-0" style="padding-top: 30px; padding-bottom: 5px;">
 				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
 				<li class="breadcrumb-item active" aria-current="page"><a
-					href="/categoria">Categorías</a></li>
+
+					href="/categoria/">Categorías</a></li>
+
 				<li class="breadcrumb-item active" aria-current="page">Productos</li>
 			</ol>
 		</nav>
 		<!--FIN MIGAS DE PAN-->
 	</div>
+
 	<div class="container" style="padding-bottom:20px;">
 		<div class="container my-2">
 			<div class="card">
@@ -61,42 +65,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="producto: ${productos}">
-											<td><a class="btn btn-info btn-xs"
-												th:href="@{/producto/ver/} + ${producto.id}"
-												th:text="${producto.id}"></a></td>
-
-											<td th:text="${producto.nombreProducto}"></td>
-											<td th:text="${producto.valor}"></td>
-											<td th:text="${producto.cantidad}"></td>
-											<td th:text="${producto.descripcion}"></td>
-
- <div th:insert="navbar">...</div>
- 
- <div class="container">
-	<div class="container my-2">
-		<div class="card">
-			<div class="card-body">
-				<div th:switch="${productos}" class="container my-5">
-				
-					<div class="col-md-10">
-						<h2 th:case="null">No hay Productos!</h2>
-						<div th:case="*">
-							<table class="table table-striped table-bordered table-responsive-md">
-								<thead class="thead-dark">
-									<tr>
-									
-										<th>Producto</th>
-										<th>Valor</th>
-										<th>Cantidad</th>
-										<th>Descripcion</th>
-										<th>Detalle producto</th>
 										
-										<th>Editar</th>
-										<th>Eliminar</th>
-									</tr>
-								</thead>
-								<tbody>
 									<tr th:each="producto: ${productos}">
 										
 										
@@ -118,20 +87,6 @@
 							</table>
 						</div>
 
-
-											<td><a
-												th:href="@{/producto/updateproducto/{id}(id=${producto.id})}"
-												class="btn btn-success"><i class="fas fa-user-edit ml-2"></i></a></td>
-											<td><a
-												th:href="@{/producto/delete/{id}(id=${producto.id})}"
-												class="btn btn-danger"><i class="fas fa-user-times ml-2"></i></a></td>
-
-
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
 						</div>
 					</div>
 				</div>
@@ -142,7 +97,7 @@
 			</div>
 		</div>
 
-	</div>
+	
 	<div th:insert="footer"></div>
 </body>
 </html>
