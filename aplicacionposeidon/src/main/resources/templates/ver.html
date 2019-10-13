@@ -27,14 +27,19 @@
  	<div class="container py-4">
  	<div class="card bg-light">
 	 	<div class= "card-header">
+	 	
+	 			<h5 th:text="${producto.nombreProducto}"></h5>
+	 			
 	 	</div>
 	 	<div class="card-body">
 	 		<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/producto/uploads/' +${producto.imagen}}"/>
 	 		
 	 		<ul class="list-group">
-	 			<li class="list-group-item" th:text="${producto.nombreProducto}"></li>
+	 		   <label for="nombreCategoria" class="col-form-label">Valor ($ CL)</label> 
 	 			<li class="list-group-item"	th:text="${producto.valor}"></li>
+	 			<label for="nombreCategoria" class="col-form-label">Descripción</label> 
 	 			<li class="list-group-item"	th:text="${producto.descripcion}"></li>
+	 			<label for="nombreCategoria" class="col-form-label">Cantidad (kg)</label> 
 	 			<li class="list-group-item"	th:text="${producto.cantidad}"></li>
 	 		</ul>
 	 	</div>
