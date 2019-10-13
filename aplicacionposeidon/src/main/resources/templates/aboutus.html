@@ -21,10 +21,23 @@
 
 	<div th:insert="navbar">...</div>
 	
-	<div class="contenedor">
+	  
+ <div class="container">
+		<nav style= "background-color:white; padding-left: 20px;" aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0" style="padding-top: 30px; padding-bottom: 5px;">
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page">Sobre Nosotros</li>
+						
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
+	
+	<div class="contenedor" style="padding-bottom:50px">
 
 		<div align="center" >
-			<img src="/img/poseidon.jpg" alt="Imagen no disponible" class="img-thumbnail rounded" style="max-width: 100%;">
+			<img src="/img/poseidon.jpg" alt="Imagen no disponible" class="img-thumbnail rounded" style="width: 1074px; height: auto;">
 		</div>
 			<div class="centrado" id="texto">
 				<h2>Visión</h2>
