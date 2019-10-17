@@ -45,7 +45,14 @@
 	 	</div>
  	</div>
  	</div>
- 	
+ 	<div style="padding-left: 800px; padding-bottom: 5px;">
+ 	<a class="btn btn-danger" th:href="@{'/categoria/listcategoria/' + ${producto.categoria.id}} "
+						style="margin: auto;"> Volver a productos </a>
+						
+					<a class="btn btn-danger" th:href="@{/categoria/}"
+						style="margin: auto;"> Volver a categorias </a>
+						
+				</div>
  
 <div th:insert="footer"></div>
 
