@@ -99,8 +99,9 @@
 			</div>
 		</div>
 	</div>
-
-
-	<div th:insert="footer"></div>
+<div class="col-md-6">
+                                <a  th:href="@{'/producto/formularioproducto/' + ${categoria.id}} "
+													class="btn btn-success btn-xs"><i>  Agregar Producto</i></a>
+                            </div>
 </body>
 </html>
