@@ -21,33 +21,53 @@
 </head>
 <body>
 
- <div th:insert="navbar">...</div>
+	<div th:insert="navbar">...</div>
 
- 
- 	<div class="container py-4">
- 	<div class="card bg-light">
-	 	<div class= "card-header">
-	 	
-	 			<h5 th:text="${producto.nombreProducto}"></h5>
-	 			
-	 	</div>
-	 	<div class="card-body">
-	 		<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/producto/uploads/' +${producto.imagen}}"/>
-	 		
-	 		<ul class="list-group">
-	 		   <label for="nombreCategoria" class="col-form-label">Valor ($ CL)</label> 
-	 			<li class="list-group-item"	th:text="${producto.valor}"></li>
-	 			<label for="nombreCategoria" class="col-form-label">Descripción</label> 
-	 			<li class="list-group-item"	th:text="${producto.descripcion}"></li>
-	 			<label for="nombreCategoria" class="col-form-label">Cantidad (kg)</label> 
-	 			<li class="list-group-item"	th:text="${producto.cantidad}"></li>
-	 		</ul>
-	 	</div>
- 	</div>
- 	</div>
- 	
- 
-<div th:insert="footer"></div>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header">
+
+				<h5 th:text="${producto.nombreProducto}"></h5>
+
+			</div>
+			<div class="card-body">
+				<img class="img-thumbnail rounded float-left"
+					style="max-width: 25%;"
+					th:src="@{'/producto/uploads/' +${producto.imagen}}" />
+
+				<ul class="list-group">
+					<label for="nombreCategoria" class="col-form-label">Valor
+						($ CL)</label>
+					<li class="list-group-item" th:text="${producto.valor}"></li>
+					<label for="nombreCategoria" class="col-form-label" />Descripción
+					</label>
+					<li class="list-group-item" th:text="${producto.descripcion}"></li>
+					<label for="nombreCategoria" class="col-form-label">Cantidad
+						(kg)</label>
+					<li class="list-group-item" th:text="${producto.cantidad}"></li>
+				</ul>
+			</div>
+				<div class="row">
+			<div style="padding-left: 50px;">
+				<a
+					th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}"
+					class="btn btn-success"> Productos </a>
+			</div>
+				<div style="padding-left: 840px;padding-bottom: 15px;">
+				<a th:href="@{/categoria/}" class="btn btn-danger"> Categorias </a>
+			</div>
+		
+	</div>
+		</div>
+	</div>
+	
+
+			
+
+
+
+	<div th:insert="footer"></div>
 
 </body>
 </html>
