@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -8,7 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Poseidon</title>
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> Pili
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
@@ -19,7 +23,6 @@
 <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
 <body>
-
 
  <div th:insert="navbar">...</div>
  
@@ -36,10 +39,11 @@
 		</nav>
 		<!--FIN MIGAS DE PAN-->
 	</div>
- 
- <div class="container">
-	<div class="container my-2" style="padding-bottom:20px;">
-		<div >
+
+
+	<div class="container my-2" style="padding-bottom: 20px">
+		<div class="card">
+
 			<div class="card-body">
 				<div th:switch="${productos}" class="container my-5">
 				
@@ -81,10 +85,7 @@
 								</tbody>
 							</table>
 						</div>
-						
 
-
-										
 
 						</div>
 					</div>
@@ -96,7 +97,7 @@
 			</div>
 		</div>
 
-	</div>
+	
 	<div th:insert="footer"></div>
 </body>
 </html>
