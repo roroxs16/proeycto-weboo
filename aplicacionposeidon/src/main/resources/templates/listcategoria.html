@@ -37,7 +37,7 @@
 	<div class="container">
 		<div class="container my-2" style="padding-bottom: 20px">
 
-			<div class="card">
+			<div >
 			<div >
 			<div class="card-body">
 					<div th:switch="${categorias}" class="container my-5">
@@ -45,6 +45,9 @@
 							<a href="/categoria/formulariocategoria" class="btn btn-primary"><i
 								class="fas fa-water" style="font-size:15px"> Agregar categoria</i></a>
 						</p>
+						
+						<div th:classappend="'alert-'+(${clase!=null}?${clase}:info)"
+						th:if="${mensaje!=null}" th:text="${mensaje}" class="alert"></div>
 
 						<div class="col-md-10" style="margin: auto">
 							<h2 th:case="null">No hay categorias!</h2>
