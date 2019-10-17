@@ -133,7 +133,7 @@ public class ProductoController {
 		flash
         .addFlashAttribute("mensaje", "Producto agregado correctamente")
         .addFlashAttribute("clase", "success");
-		return "redirect:/categoria/";
+		return "redirect:/categoria/listcategoria/"+producto.getCategoria().getId();
 	}
 	
 	
@@ -162,10 +162,11 @@ public class ProductoController {
        
 		
         
-     
+		Producto producto= productoService.findOne(id);
+		int aux=producto.getCategoria().getId();
 		
 		if(id>0) {
-			Producto producto= productoService.findOne(id);
+			
 			productoService.delete(id);
 			
 			Path rootPath =Paths.get("uploads").resolve(producto.getImagen()).toAbsolutePath();
@@ -179,7 +180,7 @@ public class ProductoController {
 			
 		}
 		
-		return "redirect:/categoria/";
+		return "redirect:/categoria/listcategoria/"+aux;
     }
 	
 	@RequestMapping(value="/updateproducto/{id}", method=RequestMethod.GET)
@@ -202,6 +203,6 @@ public class ProductoController {
 		System.out.println(producto);
 		productoService.save(producto);
 		
-		return "redirect:/producto/";
+		return "redirect:/categoria/listcategoria/"+producto.getCategoria().getId();
 	}
 }

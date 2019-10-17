@@ -88,6 +88,7 @@ public class CategoriaController {
 		}
 		
 		model.addAttribute("productos", categoria.getProductos());
+		model.addAttribute("categoriaid",categoria);
 		
 		return "verproductos";
 	}

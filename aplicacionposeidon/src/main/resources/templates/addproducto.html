@@ -25,7 +25,7 @@
                     <form action="#" th:action="@{/producto/saveproductosucces}" th:object="${producto}" method="post" enctype="multipart/form-data">
                   
                   
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" style="padding-left: inherit">
                  		<label for="Categoria" class="col-form-label">Categoria</label> 
                    	 <input th:value="${producto.categoria.nombreCategoria}" class="form-control" disabled='disabled'/>
                        </div>
@@ -60,9 +60,16 @@
                             
 
                             <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary" value="Crear Producto">
+                                <input type="submit" th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-primary" value="Crear Producto">
+
+                                
                             </div>
 
+ 							<div class="col-md-6">
+                                <a  th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-danger" > Cancelar </a>
+                            </div>
+                          
+                            
                             <div class="form-group col-md-8"></div>
 
                         </div>

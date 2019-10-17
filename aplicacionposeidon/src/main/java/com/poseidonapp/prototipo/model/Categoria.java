@@ -30,7 +30,7 @@ public class Categoria implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-    @NotEmpty
+	@NotEmpty
 	@Column(name="nombre")
 	private String nombreCategoria;
     
