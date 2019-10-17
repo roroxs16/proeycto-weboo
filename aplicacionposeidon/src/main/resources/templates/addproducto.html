@@ -19,7 +19,7 @@
 <div th:insert="navbar">...</div>
     <div class="container my-5">
         <h3> Añadir Producto</h3>
-        <div class="card">
+        <div >
             <div class="card-body">
                 <div class="col-md-10">
                     <form action="#" th:action="@{/producto/saveproductosucces}" th:object="${producto}" method="post" enctype="multipart/form-data">
@@ -42,12 +42,12 @@
                                 <span th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}" class="text-danger"></span>
                             </div>
                              <div class="form-group col-md-8">
-                                <label for="nombreCategoria" class="col-form-label">Valor ($)</label> 
+                                <label for="nombreCategoria" class="col-form-label">Valor ($ CL)</label> 
                                 <input type="number" th:field="*{valor}" class="form-control" id="valor" placeholder="10.000"> 
                                 <span th:if="${#fields.hasErrors('valor')}" th:errors="*{valor}" class="text-danger"></span>
                             </div>
                              <div class="form-group col-md-8">
-                                <label for="nombreCategoria" class="col-form-label">Descripcion</label> 
+                                <label for="nombreCategoria" class="col-form-label">Descripción</label> 
                                 <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" placeholder="Empacado al vacio, cuando está congelado en cajas..."> 
                                 <span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" class="text-danger"></span>
                             </div>
