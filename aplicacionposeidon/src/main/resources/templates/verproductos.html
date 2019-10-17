@@ -44,7 +44,11 @@
 
 			<div class="card-body">
 				<div th:switch="${productos}" class="container my-5">
-				
+				<!-- Para dar los mensajes de redirectAtribbutes -->
+					<div
+						th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+						th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+					</div>
 					<div class="col-md-10">
 						<h2 th:case="null">No hay Productos!</h2>
 						<div th:case="*">
