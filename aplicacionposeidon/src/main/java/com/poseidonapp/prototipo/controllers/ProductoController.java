@@ -180,7 +180,7 @@ public class ProductoController {
 			
 		}
 		
-		return "redirect:/categoria/listcategoria/"+aux;
+		return "redirect:/categoria/listcategoria/";
     }
 	
 	@RequestMapping(value="/updateproducto/{id}", method=RequestMethod.GET)
