@@ -67,8 +67,6 @@ public class ProductoController {
 		return "ver";
 	}
 
-
-	
 	
 	
 	@GetMapping("/formularioproducto/{categoriaId}")
