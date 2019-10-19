@@ -67,8 +67,6 @@ public class ProductoController {
 		return "ver";
 	}
 
-
-	
 	
 	
 	@GetMapping("/formularioproducto/{categoriaId}")
@@ -108,6 +106,9 @@ public class ProductoController {
 				if(archivo.exists()&& archivo.canRead()) {
 					archivo.delete();
 				}
+				flash
+		        .addFlashAttribute("mensaje", "Editado correctamente")
+		        .addFlashAttribute("clase", "success");
 			}
 			
 			String uniqueFilename= UUID.randomUUID().toString()+"_"+foto.getOriginalFilename();
@@ -131,7 +132,7 @@ public class ProductoController {
 		
 		productoService.save(producto);
 		flash
-        .addFlashAttribute("mensaje", "Producto agregado correctamente")
+        .addFlashAttribute("mensaje", "Productos actualizados")
         .addFlashAttribute("clase", "success");
 		return "redirect:/categoria/listcategoria/"+producto.getCategoria().getId();
 	}
@@ -168,6 +169,9 @@ public class ProductoController {
 		if(id>0) {
 			
 			productoService.delete(id);
+			flash
+	        .addFlashAttribute("mensaje", "Producto eliminado correctamente")
+	        .addFlashAttribute("clase", "warning");
 			
 			Path rootPath =Paths.get("uploads").resolve(producto.getImagen()).toAbsolutePath();
 			File archivo= rootPath.toFile();
@@ -179,6 +183,7 @@ public class ProductoController {
 			}
 			
 		}
+		
 		
 		return "redirect:/categoria/listcategoria/"+aux;
     }
@@ -198,10 +203,13 @@ public class ProductoController {
 	
 	
 	@RequestMapping(value="/updateproductosucces", method= RequestMethod.POST)
-	public String updateProducto(Model model, @ModelAttribute ("producto") Producto producto) {
-		
+	public String updateProducto(Model model,@Valid @ModelAttribute ("producto") Producto producto,BindingResult result,RedirectAttributes flash) throws Exception {
+		if (result.hasErrors()) {
+            return "addproducto";
+        }
 		System.out.println(producto);
 		productoService.save(producto);
+		
 		
 		return "redirect:/categoria/listcategoria/"+producto.getCategoria().getId();
 	}
