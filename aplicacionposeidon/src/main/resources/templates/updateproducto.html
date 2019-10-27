@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
 
-    <title>Editar Producto</title>
+    <title>Poseidon</title>
 
 
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
@@ -58,10 +58,12 @@
                             
 
                             <div class="col-md-6">
-                                <input type="submit"  th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-primary" value="Actualizar">
+                                <input type="submit"  th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-primary" value="Guardar">
                             </div>
 
-                            <div class="form-group col-md-8"></div>
+                            <div class="col-md-6">
+                                <a  th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-danger" > Cancelar </a>
+                            </div>
 
                         </div>
                     </form>

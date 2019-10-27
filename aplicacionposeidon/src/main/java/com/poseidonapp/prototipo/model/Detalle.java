@@ -2,18 +2,13 @@ package com.poseidonapp.prototipo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,40 +27,44 @@ public class Detalle  implements Serializable{
 	private int id;
 	
 	@NotNull
-	@Column(name="created_at")
+	@Column(name="fecha")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fecha;
 	
 	@NotNull
+	@Column(name="valor_total")
 	private int valor_total;
 	
 	@NotNull
+	@Column(name="usuario_id")
+	private int usuario_id;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Producto> producto;
+    @JoinTable(name = "detalle_producto",
+        joinColumns = @JoinColumn(name = "detalle_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "producto_id", referencedColumnName = "id"))
+	private Set<Producto> productos = new HashSet<>();
 	
 	
-	
-	
+
+	public Set<Producto> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(Set<Producto> productos) {
+		this.productos = productos;
+	}
 
 	public Detalle() {
 		
-	}
+	}	
 
-	public Detalle(int id, @NotNull Date fecha, @NotNull int valor_total, @NotNull List<Producto> producto) {
-		
+	public Detalle(int id, @NotNull Date fecha, @NotNull int valor_total, @NotNull int usuario_id) {
 		this.id = id;
 		this.fecha = fecha;
 		this.valor_total = valor_total;
-		this.producto = producto;
-	}
-
-	public List<Producto> getProducto() {
-		return producto;
-	}
-
-	public void setProducto(List<Producto> producto) {
-		this.producto = producto;
+		this.usuario_id = usuario_id;
 	}
 
 	public int getId() {
@@ -86,6 +85,14 @@ public class Detalle  implements Serializable{
 
 	public int getValor_total() {
 		return valor_total;
+	}
+	
+	public int getUsuario_id() {
+		return usuario_id;
+	}
+
+	public void setUsuario_id(int usuario_id) {
+		this.usuario_id = usuario_id;
 	}
 
 	public void setValor_total(int valor_total) {

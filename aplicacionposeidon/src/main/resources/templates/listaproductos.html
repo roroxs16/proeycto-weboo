@@ -30,7 +30,7 @@
 			<ol class="breadcrumb bg-white pl-0"
 				style="padding-top: 30px; padding-bottom: 5px;">
 				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
-				<li class="breadcrumb-item active" aria-current="page">Categorías</li>
+				<li class="breadcrumb-item active" aria-current="page">Productos</li>
 			</ol>
 		</nav>
 		<!--FIN MIGAS DE PAN-->
@@ -41,18 +41,13 @@
 
 		<div class="card-body">
 
-			<div th:switch="${categorias}">
-				<p style="padding-left: 8px;">
-					<a href="/categoria/formulariocategoria" class="btn btn-primary"><i>
-							Agregar categoria</i></a>
-
-				</p>
+			<div th:switch="${productos}">
 				<!-- Para dar los mensajes de redirectAtribbutes -->
 				<div
 					th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 					th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
 				</div>
-					<h2 th:case="null">No hay categorias!</h2>
+					<h2 th:case="null">No hay productos!</h2>
 					<div th:case="*">
 
 						<table
@@ -60,38 +55,33 @@
 							<thead class="thead-light">
 								<tr>
 									<th>Nombre</th>
-									<th>Editar</th>
-									<th>Eliminar</th>
-									<th>Crear Producto</th>
-									<th>Productos</th>
+									<th>Valor ($ CL)</th>
+									<th>Cantidad (Kg)</th>
+									<th>Ver detalle</th>
+									<th>Añadir al carrito</th>
 								</tr>
 							</thead>
 
 							<tbody>
-								<tr th:each="categoria: ${categorias}">
+								<tr th:each="producto: ${productos}">
 
-									<td th:text="${categoria.nombreCategoria}"></td>
-									<td><a
-										th:href="@{/categoria/formularioupdatecategoria/{id}(id=${categoria.id})}"
-										class="btn btn-primary" title="Editar categoría"><i class="fas fa-edit"
-											></i></a></td>
-
-									<td><a
-										th:href="@{/categoria/delete/{id}(id=${categoria.id})}"
-										class="btn btn-danger" title="Eliminar categoría"><i class="fas fa-trash-alt"
-											></i></a></td>
-
-									<td><a
-										th:href="@{/producto/formularioproducto/} + ${categoria.id}"
-										class="btn btn-success btn-xs"><i class="fas fa-plus " title="Agregar producto" ></i></a></td>
-									<td><a 
-										th:href="@{/categoria/listcategoria/{id}(id=${categoria.id})}"
-										class="btn btn-info btn-xs" title="Ver lista de productos"><i class="far fa-eye "  >
-												</i></a></td>
+									<td th:text="${producto.nombreProducto}"></td>
+									<td th:text="${producto.valor}"></td>
+									<td th:text="${producto.cantidad}"></td>
+									<td><a class="btn btn-info btn-xs"
+											th:href="@{/producto/ver/} + ${producto.id}" title="Ver detalle producto
+											" ><i class="far fa-eye " ></i></a></td>
+									<td><a class="btn btn-warning" th:href="@{/compra/}"
+											 title="Añadir al carrito" >
+											 <i class="fas fa-cart-plus" style="color:white;"></i></a></td>
 
 								</tr>
 							</tbody>
 						</table>
+						<div style="padding-left: 940px; padding-bottom: 5px;">
+							<a class="btn btn-secondary" th:href="@{/categoria/}"
+						style="margin: auto;"> Ir a categorias </a>
+						</div>
 					</div>
 
 				</div>

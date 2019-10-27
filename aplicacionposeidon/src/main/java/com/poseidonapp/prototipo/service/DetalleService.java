@@ -11,5 +11,5 @@ import com.poseidonapp.prototipo.model.Producto;
 public interface DetalleService {
 
 	void save(Detalle detalle);
-	List<Producto> listAll();
+	List<Detalle> listAll();
 }

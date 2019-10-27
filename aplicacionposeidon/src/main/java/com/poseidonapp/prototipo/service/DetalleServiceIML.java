@@ -24,7 +24,7 @@ public class DetalleServiceIML implements DetalleService {
 	}
 
 	@Override
-	public List<Producto> listAll() {
-		return productoRepository.findAll();
+	public List<Detalle> listAll() {
+		return detalleRepository.findAll();
 	}
 }
