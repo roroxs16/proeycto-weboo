@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Poseidon</title>
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
+<link rel="stylesheet" type="text/css" href="/css/aboutus.css" />
+<link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+</head>
+
+<body>
+
+	<div th:insert="navbar">...</div>
+
+
+	<div class="container py-4">
+
+		<div class="card bg-danger text-white">
+			<div class="card-header">Error: Acceso Denegado</div>
+			<div class="card-body">
+				<h5 class="card-tittle">
+					Lo sentimos <span th:text="${#httpServletRequest.remoteUser}"></span>,
+					No tienes permiso para acceder a este recurso.
+				</h5>
+				<a th:href="@{/}" class="btn btn-outline-light" role="button">Volver</a>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<div th:insert="footer"></div>
+
+</body>
+</html>

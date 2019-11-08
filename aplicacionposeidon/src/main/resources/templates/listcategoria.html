@@ -47,7 +47,7 @@
 
 					<div th:switch="${categorias}" class="container my-5">
 						<p class="my-5" style="padding-left: 100px;">
-							<a href="/categoria/formulariocategoria" class="btn btn-primary"><i
+							<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/categoria/formulariocategoria}" class="btn btn-primary"><i
 								class="fas fa-water" style="font-size:15px"> Agregar categoria</i></a>
 								
 						</p>
@@ -66,10 +66,10 @@
 										<tr>
 										
 											<th>Nombre</th>
-											<th>Editar</th>
-											<th>Eliminar</th>
-											<th>Crear Producto</th>
-											<th>Productos</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Crear Producto</th>
+											<th >Productos</th>
 										</tr>
 									</thead>
 
@@ -77,23 +77,23 @@
 										<tr th:each="categoria: ${categorias}">
 										
 											<td th:text="${categoria.nombreCategoria}"></td>
-											<td><a
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a 
 												th:href="@{/categoria/formularioupdatecategoria/{id}(id=${categoria.id})}"
 												class="btn btn-primary"><i class="fas fa-edit" style="font-size:20px"></i></a></td>
 
-											<td><a
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a 
 												th:href="@{/categoria/delete/{id}(id=${categoria.id})}"
 												class="btn btn-danger"><i
 													class="fas fa-trash-alt" style="font-size:20px " ></i></a></td>
 													
-											<td><a
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 													th:href="@{/producto/formularioproducto/} + ${categoria.id}"
 													class="btn btn-success btn-xs"><i
 													class="fas fa-fish ">  Agregar Producto</i></a></td>
 											
-											<td><a
+											<td ><a 
 												th:href="@{/categoria/listcategoria/{id}(id=${categoria.id})}"
-												class="btn btn-warning">Ver lista de Productos</a></td>
+												class="btn btn-warning"><i>Ver lista de Productos</i></a></td>
 										</tr>
 									</tbody>
 								</table>

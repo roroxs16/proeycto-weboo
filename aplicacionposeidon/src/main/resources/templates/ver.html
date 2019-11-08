@@ -11,6 +11,7 @@
 
 
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet" type="text/css" href="/css/verproducto.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
 <script type="text/javascript"
@@ -36,12 +37,13 @@
 	 		<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/producto/uploads/' +${producto.imagen}}"/>
 	 		
 	 		<ul class="list-group">
+	 		
 	 		   <label for="nombreCategoria" class="col-form-label">Valor ($ CL)</label> 
-	 			<li class="list-group-item"	th:text="${producto.valor}"></li>
+	 			<li class="list-group-item"	th:text="'$'+${producto.valor}"></li>
 	 			<label for="nombreCategoria" class="col-form-label">Descripción</label> 
 	 			<li class="list-group-item"	th:text="${producto.descripcion}"></li>
 	 			<label for="nombreCategoria" class="col-form-label">Cantidad (kg)</label> 
-	 			<li class="list-group-item"	th:text="${producto.cantidad}"></li>
+	 			<li class="list-group-item"	th:text="${producto.cantidad}+'Kg'"></li>
 	 		</ul>
 	 	</div>
  	</div>

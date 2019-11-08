@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+.list-group label {
+	padding-left: 20px; 
+}
+
+.list-group li {
+	padding-left: 20px; margin-left: 18px; width: 500px; 
+}
