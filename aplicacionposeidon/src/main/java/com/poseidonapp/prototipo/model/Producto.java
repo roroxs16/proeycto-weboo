@@ -3,17 +3,9 @@ package com.poseidonapp.prototipo.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -51,6 +43,8 @@ public class Producto {
 
 	
 		
+		@ManyToMany(mappedBy = "productos")
+	    private Set<Detalle> detalles = new HashSet<>();		
 		
 		public Producto() {
 			
@@ -132,5 +126,20 @@ public class Producto {
 			return "Producto [id=" + id + ", nombreProducto=" + nombreProducto + ", cantidad=" + cantidad + ", valor="
 					+ valor + ", descripcion=" + descripcion + ", imagen=" + imagen + ", categoria=" + categoria + "]";
 		}
+		
+		public int valorTotal(int cantidad){
+			int total= this.valor * cantidad;
+			
+			return total;
+		}
+
+		public Set<Detalle> getDetalles() {
+			return detalles;
+		}
+
+		public void setDetalles(Set<Detalle> detalles) {
+			this.detalles = detalles;
+		}
+		
 		
 }

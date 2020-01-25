@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Poseidon</title>
+
+
+<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+
+	<div th:insert="navbar">...</div>
+
+	<div class="container">
+		<nav style="background-color: white; padding-left: 20px;"
+			aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0"
+				style="padding-top: 30px; padding-bottom: 5px;">
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page">Productos</li>
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
+
+
+	<div class="container my-2" style="padding-bottom: 20px">
+
+		<div class="card-body">
+		
+	
+		
+		
+		<br>
+			<div th:switch="${productos}">
+				<!-- Para dar los mensajes de redirectAtribbutes -->
+				<div
+					th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+					th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+				</div>
+					<h2 th:case="null">No hay productos!</h2>
+					<div th:case="*">
+
+						<table
+							class="table table-bordered table-responsive-md table-hover">
+							<thead class="thead-light">
+								<tr>
+									<th>Nombre</th>
+									<th>Valor ($ CL)</th>
+									<th>Cantidad (Kg)</th>
+									<th>Ver detalle</th>
+									<th>Añadir al carrito</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="producto: ${productos}">
+
+									<td th:text="${producto.nombreProducto}"></td>
+									<td th:text="${producto.valor}"></td>
+									<td th:text="${producto.cantidad}"></td>
+									<td><a class="btn btn-info btn-xs"
+											th:href="@{/producto/ver/} + ${producto.id}" title="Ver detalle producto
+											" ><i class="far fa-eye " ></i></a></td>
+									<td><a class="btn btn-warning" th:href="@{/compra/}"
+											 title="Añadir al carrito" >
+											 <i class="fas fa-cart-plus" style="color:white;"></i></a></td>
+
+								</tr>
+							</tbody>
+						</table>
+						<div style="padding-left: 940px; padding-bottom: 5px;">
+							<a class="btn btn-secondary" th:href="@{/categoria/}"
+						style="margin: auto;"> Ir a categorias </a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	<div th:insert="footer"></div>
+
+</body>
+
+</html>

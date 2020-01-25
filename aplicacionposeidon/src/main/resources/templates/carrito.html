@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Poseidon</title>
+
+<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+<body>
+
+	<div th:insert="navbar">...</div>
+
+	<div class="container my-2" style="padding-bottom: 20px">
+	<h2>Carrito</h2>
+		<div class="card-body">
+		<form action="#" th:action="@{/compra/savecarritosucces}" th:object="${carrito}" method="post">
+			<table class="table table-bordered table-responsive-md table-hover">
+			
+				<thead class="thead-light">
+					<th>Cantidad</th>
+					<th>Nombre</th>
+					<th>Valor unitario ($ CL)</th>
+					<th>Valor total ($ CL)</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="number" 
+									class="form-control" id="cantidad" placeholder="1" style="width:100px"></td>
+						<td>Salmon</td>
+						<td>100</td>
+						<td>200</td>
+					</tr>
+					<tr>
+					<td colspan="3"><b >Total compra ($ CL)</b></td>
+					<td><input type="number" 
+									class="form-control" id="total" placeholder="10000" style="width:200px"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div style="padding-left: 800px; padding-bottom: 5px;">
+				<a  href="/producto/"  style="margin: auto;" class="btn btn-primary" > Seguir comprando </a>
+            	<input type="submit" class="btn btn-success" value="Comprar">           	
+            </div>
+			</form>
+		</div>
+	</div>
+	<div th:insert="footer"></div>
+</body>
+
+</html>

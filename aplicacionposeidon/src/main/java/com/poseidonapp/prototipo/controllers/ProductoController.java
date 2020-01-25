@@ -47,14 +47,12 @@ public class ProductoController {
 	
 	@Autowired
 	private CategoriaService categoriaService;
-	
-	
+
 	@RequestMapping("/")
-	public String listarProducto(Model model) {
-		
+	public String listarCatalogo(Model model) {
 		model.addAttribute("productos", productoService.listAll());
 		
-		return "listp";
+		return "listaproductos";
 	}
 	
 	@GetMapping("/ver/{id}")

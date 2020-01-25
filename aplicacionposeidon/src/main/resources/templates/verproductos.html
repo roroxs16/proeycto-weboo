@@ -41,15 +41,16 @@
 
 	<div class="container">
 		<div class="container my-2" style="padding-bottom: 20px;">
-			<div>
+			
 
 				<div class="card-body">
-					<div th:switch="${productos}" class="container my-5">
-						<!-- Para dar los mensajes de redirectAtribbutes -->
+					<div th:switch="${productos}">
+
 						<div
 							th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
 							th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
 						</div>
+
 						<div style="padding-left: 20px; padding-bottom: 25px;">
 							<a sec:authorize="hasRole('ROLE_ADMIN')"
 								th:href="@{'/producto/formularioproducto/' + ${categoria.id}} "
@@ -106,14 +107,13 @@
 								<a class="btn btn-danger" th:href="@{/categoria/}"
 									style="margin: auto;"><i> Volver a categorias </i></a>
 							</div>
-
-						</div>
-					</div>
-				</div>
-
 			</div>
+</div>
+</div>
+</div>
+
 		</div>
-	</div>
+
 	<div th:insert="footer"></div>
 </body>
 </html>

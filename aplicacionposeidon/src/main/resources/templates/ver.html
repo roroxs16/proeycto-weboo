@@ -45,14 +45,20 @@
 	 			<label for="nombreCategoria" class="col-form-label">Cantidad (kg)</label> 
 	 			<li class="list-group-item"	th:text="${producto.cantidad}+'Kg'"></li>
 	 		</ul>
+	 		<br>
+	 		<div>
+	 		<a class="btn btn-warning" th:href="@{/compra/}"
+											 title="Añadir al carrito" style="color:white;">
+											 <i class="fas fa-cart-plus" style="color:white;"></i> Añadir al carrito</a>
+			</div>
 	 	</div>
  	</div>
  	</div>
  	<div style="padding-left: 800px; padding-bottom: 5px;">
- 	<a class="btn btn-danger" th:href="@{'/categoria/listcategoria/' + ${producto.categoria.id}} "
+ 	<a class="btn btn-secondary" th:href="@{'/categoria/listcategoria/' + ${producto.categoria.id}} "
 						style="margin: auto;"> Volver a productos </a>
 						
-					<a class="btn btn-danger" th:href="@{/categoria/}"
+					<a class="btn btn-secondary" th:href="@{/categoria/}"
 						style="margin: auto;"> Volver a categorias </a>
 						
 				</div>

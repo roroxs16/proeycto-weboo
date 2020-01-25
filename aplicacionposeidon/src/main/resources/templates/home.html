@@ -11,30 +11,34 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css" />
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" />
 <script type="text/javascript"
 	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
-	</head>
+<script th:src="@{/js/jquery-ui.min.js}"></script>
+</head>
 <body>
 
 	<div th:insert="navbar">...</div>
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col center">
-				<a id="button" th:href="@{/categoria/}" class="btn btnAgregar center">Productos</a>
+				<a id="button" th:href="@{/producto/}" class="btn btnAgregar center">Productos</a>
 			</div>
 			<div class="col center">
-				<a style="width:350px" id="button" th:href="@{/aboutus/}" class="btn btnAgregar center">Sobre nosotros</a>
+				<a style="width: 350px" id="button" th:href="@{/aboutus/}"
+					class="btn btnAgregar center">Sobre nosotros</a>
 			</div>
 			<div class="col center">
 				<a id="button" th:href="@{/contacto/}" class="btn btnAgregar center">Contacto</a>
 			</div>
-			
+
 		</div>
-	
+
 	</div>
+
 	
 	
 	
@@ -45,6 +49,5 @@
 
 	
 </body>
-	
-	
+
 </html>
