@@ -1,20 +1,12 @@
 package com.poseidonapp.prototipo.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +25,7 @@ public class Usuario implements Serializable {
 	@Column(name = "apellidos")
 	private String apellidos;
 
-	@Column(name = "password", length = 60)
+	@Column(name = "password")
 	private String password;
 
 	// este es el usuario de logeo
@@ -50,19 +42,19 @@ public class Usuario implements Serializable {
 
 	@Column(name = "run")
 	private String run;
-
+	
 	@Column(name = "ciudad")
 	private String ciudad;
 
 	@Column(name = "telefono")
 	private Long telefono;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "usuario_id")
-	private List<Rol> roles;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Rol> roles;
+
 
 	public Usuario(int id, String nombre, String apellidos, String password, @Email String correo, String direccion,
-			Date fechaNacimiento, String run, String ciudad, Long telefono) {
+			Date fechaNacimiento, String run, String ciudad, Long telefono, List<Rol> roles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -74,11 +66,18 @@ public class Usuario implements Serializable {
 		this.run = run;
 		this.ciudad = ciudad;
 		this.telefono = telefono;
+		this.roles = roles;
 	}
+
+
+
 
 	public Usuario() {
 
 	}
+
+
+
 
 	public List<Rol> getRoles() {
 		return roles;

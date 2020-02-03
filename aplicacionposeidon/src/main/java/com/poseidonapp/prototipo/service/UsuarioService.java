@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +18,15 @@ import com.poseidonapp.prototipo.model.Rol;
 import com.poseidonapp.prototipo.model.Usuario;
 import com.poseidonapp.prototipo.repository.UsuarioRepository;
 
+
 @Service("usuarioService")
-public class UsuarioService  implements UserDetailsService{
+public class UsuarioService  implements UserDetailsService, IUserService{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -36,6 +41,19 @@ public class UsuarioService  implements UserDetailsService{
 		}
 		
 		return new User(usuario.getCorreo(), usuario.getPassword(),true,true,true,true, autoridades);
+	}
+
+	@Override
+	public void save(Usuario usuario) {
+		
+		usuarioRepository.save(usuario);
+		
+	}
+
+	@Override
+	public void saveUsuarioRoles(Long id_User, Long id_Rol) {
+		  usuarioRepository.saveUsuario_Roles(id_User, id_Rol);
+		
 	}
 
 }
