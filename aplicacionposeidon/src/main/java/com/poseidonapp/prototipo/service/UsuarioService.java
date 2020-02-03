@@ -51,8 +51,8 @@ public class UsuarioService  implements UserDetailsService, IUserService{
 	}
 
 	@Override
-	public void saveUsuarioRoles(Long id_User, Long id_Rol) {
-		  usuarioRepository.saveUsuario_Roles(id_User, id_Rol);
+	public void saveUsuarioRoles(int i, int j) {
+		  usuarioRepository.saveUsuario_Roles(i, j);
 		
 	}
 

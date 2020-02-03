@@ -18,5 +18,5 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
     @Modifying
     @Query(value = "insert into usuario_roles (usuario_id,role_id) VALUES (:usuario_id,:role_id)", nativeQuery = true)
     @Transactional
-    void saveUsuario_Roles(@Param("usuario_id") Long usuario_id, @Param("role_id") Long id);
+    void saveUsuario_Roles(@Param("usuario_id") int usuario_id, @Param("role_id") int id);
 }

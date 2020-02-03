@@ -7,6 +7,6 @@ public interface IUserService {
 	
 
     public void save(Usuario us);
-    public void saveUsuarioRoles(Long id_User, Long id_Rol);
+    public void saveUsuarioRoles(int id_User, int id_Rol);
     
 }
