@@ -98,7 +98,7 @@ public class ProductoController {
 			
 			
 			if(producto.getId()>0 && producto.getImagen()!=null) {
-				Path rootPath =Paths.get("src//main//resources//static/uploads").resolve(producto.getImagen()).toAbsolutePath();
+				Path rootPath =Paths.get("src//main//resources//static/imgProducto").resolve(producto.getImagen()).toAbsolutePath();
 				File archivo= rootPath.toFile();
 				
 				if(archivo.exists()&& archivo.canRead()) {
@@ -110,7 +110,7 @@ public class ProductoController {
 			}
 			
 			String uniqueFilename= UUID.randomUUID().toString()+"_"+foto.getOriginalFilename();
-			Path rootPath= Paths.get("src//main//resources//static/uploads").resolve(uniqueFilename);
+			Path rootPath= Paths.get("src//main//resources//static/imgProducto").resolve(uniqueFilename);
 			
 			Path rootAbsoluPath = rootPath.toAbsolutePath();
 			
