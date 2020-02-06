@@ -38,46 +38,49 @@ input[type=number] {
 			<div class="card-body">
 				<div class="col-md-10">
 
-					<form action="#">
+					<form action="#" th:action="@{/saveusuario}"
+						th:object="${nuevousuario}" method="post"
+						enctype="multipart/form-data">
 
 
 						<div class="col-sm-6" style="padding-left: inherit"></div>
 						<div class="row">
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Nombre*</label> <input type="text"
-									class="form-control">
+									class="form-control" th:field="*{nombre}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Apellidos*</label> <input
-									type="text" class="form-control">
+									type="text" class="form-control" th:field="*{apellidos}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Run*</label> <input type="text"
-									class="form-control">
+									class="form-control" th:field="*{run}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Correo*</label> <input type="text"
-									class="form-control">
+									class="form-control" th:field="*{correo}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Fecha de Nacimiento</label> <input
-									type="text" class="form-control" placeholder="dd-mm-aaaa">
+									type="text" class="form-control" placeholder="dd-mm-aaaa" 
+									th:field="*{fechaNacimiento}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Dirección</label> <input
-									type="text" class="form-control">
+									type="text" class="form-control" th:field="*{direccion}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Ciudad</label> <input type="text"
-									class="form-control">
+									class="form-control" th:field="*{ciudad}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Teléfono</label> <input
-									type="number" class="form-control">
+									type="number" class="form-control" th:field="*{telefono}">
 							</div>
 							<div class="form-group col-md-8">
 								<label class="col-form-label">Contraseña*</label> <input
-									type="text" class="form-control">
+									type="password" class="form-control" th:field="*{password}" />
 							</div>
 
 
