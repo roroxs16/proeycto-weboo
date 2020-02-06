@@ -58,7 +58,7 @@
 										<td th:text="${producto.valor}"></td>
 										<td th:text="${producto.cantidad}"></td>
 										<td th:text="${producto.descripcion}"></td>
-										<td th:text="${producto.categoria.getId()}"></td>
+										<td th:text="${producto.categoria.getNombre()}"></td>
 										
 										<td><a th:href="@{/producto/updateproducto/{id}(id=${producto.id})}"
 											class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
