@@ -3,7 +3,9 @@ package com.poseidonapp.prototipo.model;
 import java.util.HashSet;
 import java.util.Set;
 
+
 import javax.persistence.*;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -39,13 +41,14 @@ public class Producto {
 		@JoinColumn(name = "categoria_producto_id", nullable = false)
 		private Categoria  categoria;
 
+	
 		
 		@ManyToMany(mappedBy = "productos")
 	    private Set<Detalle> detalles = new HashSet<>();		
 		
 		public Producto() {
 			
-		}
+		} 
 
 		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
 				@NotEmpty String descripcion, String imagen, Categoria categoria) {

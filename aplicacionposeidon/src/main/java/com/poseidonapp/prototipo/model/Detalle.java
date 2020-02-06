@@ -2,30 +2,36 @@ package com.poseidonapp.prototipo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity	
 @Table(name="detalle")
 public class Detalle  implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7146570703128669525L;
+	private static final long serialVersionUID = 8619174119821048590L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	
+
 	@NotNull
 	@Column(name="fecha")
 	@Temporal(TemporalType.DATE)
@@ -104,8 +110,6 @@ public class Detalle  implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
 	
 
 }
