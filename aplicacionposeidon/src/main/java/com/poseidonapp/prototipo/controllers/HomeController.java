@@ -20,4 +20,8 @@ public class HomeController {
 		return "contacto";
 	}
 	
+	@GetMapping("/registro")
+	public String registro() {
+		return "registro";
+	}
 }
