@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +24,7 @@ import com.poseidonapp.prototipo.service.RolService;
 import com.poseidonapp.prototipo.service.UsuarioService;
 
 @Controller
+@RequestMapping("/usuario")
 public class UserController {
 
 	@Autowired
@@ -42,34 +44,32 @@ public class UserController {
 	
 	
 		model.addAttribute("nuevousuario", new Usuario());
-		
+		System.out.println("Entra aca");
 		
 		return "registro";
 		
 	}
-	//guarda la categoria
+
 	@PostMapping("/saveusuario")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
-		if (result.hasErrors()) {
-            return "registro";
-        }
+	public String formularioUsuarioSave(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
 		
-		rolesList =  rolService.findAl();
+		System.out.println("entra aca");
+		
+		rolesList =  rolService.findAll();
 		
 		String password = usuario.getPassword();
 		
-		passwordEncoder.encode(password);
 		
-		usuario.setPassword(password);
+		usuario.setPassword(passwordEncoder.encode(password));
 		
-		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
+		System.out.println(usuario);
 		
 		usuarioService.save(usuario);
-		redirectAttrs
-        .addFlashAttribute("mensaje", "Categoria agregada correctamente")
-        .addFlashAttribute("clase", "success");
+		
+		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
+	
 		status.setComplete();
-		return "redirect:/login";
+		return "redirect:/";
 	
 	}
 	

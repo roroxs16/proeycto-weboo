@@ -25,8 +25,7 @@ public class UsuarioService  implements UserDetailsService, IUserService{
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+	
 	
 	@Override
 	@Transactional(readOnly=true)
