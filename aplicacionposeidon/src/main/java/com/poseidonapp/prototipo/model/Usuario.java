@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,16 +21,20 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@NotEmpty
 	@Column(name = "nombre")
 	private String nombre;
 
+	@NotEmpty
 	@Column(name = "apellidos")
 	private String apellidos;
 
+	@NotEmpty
 	@Column(name = "password")
 	private String password;
 
 	// este es el usuario de logeo
+	@NotEmpty
 	@Email
 	@Column(name = "correo", unique = true)
 	private String correo;
@@ -40,9 +46,10 @@ public class Usuario implements Serializable {
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 
+	@NotNull
 	@Column(name = "run")
 	private String run;
-	
+
 	@Column(name = "ciudad")
 	private String ciudad;
 
@@ -50,12 +57,11 @@ public class Usuario implements Serializable {
 	private Long telefono;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Rol> roles;
+	private List<Rol> roles;
 
-
-	public Usuario(int id, String nombre, String apellidos, String password, @Email String correo, String direccion,
-			Date fechaNacimiento, String run, String ciudad, Long telefono, List<Rol> roles) {
-		super();
+	public Usuario(int id, @NotEmpty String nombre, @NotEmpty String apellidos, @NotEmpty String password,
+			@NotEmpty @Email String correo, String direccion, Date fechaNacimiento, @NotNull String run, String ciudad,
+			Long telefono, List<Rol> roles) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -69,15 +75,11 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-
-
+	
 
 	public Usuario() {
 
 	}
-
-
-
 
 	public List<Rol> getRoles() {
 		return roles;
@@ -171,5 +173,9 @@ public class Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8345568794830008231L;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }

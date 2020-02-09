@@ -44,7 +44,7 @@ public class UserController {
 	
 	
 		model.addAttribute("nuevousuario", new Usuario());
-		System.out.println("Entra aca");
+	//	System.out.println("Entra aca");
 		
 		return "registro";
 		
@@ -53,24 +53,29 @@ public class UserController {
 	@PostMapping("/saveusuario")
 	public String formularioUsuarioSave(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
 		
-		System.out.println("entra aca");
+		if (result.hasErrors()) {
+            return "registro";
+        }
+		
+	//	System.out.println("entra aca");
 		
 		rolesList =  rolService.findAll();
 		
 		String password = usuario.getPassword();
-		
-		
 		usuario.setPassword(passwordEncoder.encode(password));
 		
-		System.out.println(usuario);
+	//	System.out.println(usuario);
 		
 		usuarioService.save(usuario);
 		
 		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
 	
 		status.setComplete();
+		
 		return "redirect:/";
 	
 	}
+		
+		
 	
 }
