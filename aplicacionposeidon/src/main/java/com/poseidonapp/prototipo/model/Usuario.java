@@ -8,6 +8,8 @@ import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,33 +20,45 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@NotEmpty(message="Debe ingresar su Nombre")
+	@Size(min=3,max=150, message="El apellido ingresado debe tener mas de 3 caracteres")
 	@Column(name = "nombre")
 	private String nombre;
 
+	@NotEmpty(message="Debe ingresar su Apellido")
+	@Size(min=3,max=150, message="El apellido ingresado debe tener mas de 3 caracteres")
 	@Column(name = "apellidos")
 	private String apellidos;
 
+	@NotEmpty(message="Debe ingresar una Password")
+	@Size(min=6,max=25, message="La Password ingresada debe tener mas de 6 caracteres")
 	@Column(name = "password")
 	private String password;
 
 	// este es el usuario de logeo
 	@Email
+	@NotEmpty(message="Debe ingresar un correo electronico valido")
 	@Column(name = "correo", unique = true)
 	private String correo;
-
+	
+	@NotEmpty(message="Debe ingresar una dirección valida")
 	@Column(name = "direccion")
 	private String direccion;
+	
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name = "fecha_nacimiento")
 	private Date fechaNacimiento;
 
+	@NotEmpty(message="Debe ingresar un Rut valida")
 	@Column(name = "run")
 	private String run;
 	
+	@NotEmpty(message="Debe ingresar una ciudad valida")
 	@Column(name = "ciudad")
 	private String ciudad;
+
 
 	@Column(name = "telefono")
 	private Long telefono;
