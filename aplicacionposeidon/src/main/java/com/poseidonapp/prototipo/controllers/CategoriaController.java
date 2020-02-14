@@ -64,7 +64,7 @@ public class CategoriaController {
 	}
 	//guarda la categoria
 	@PostMapping("/savecategoriasucces")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
+	public String formularioCategoriaSave(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
 		if (result.hasErrors()) {
             return "addcategoria";
         }

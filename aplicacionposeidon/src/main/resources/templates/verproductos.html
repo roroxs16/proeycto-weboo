@@ -72,8 +72,8 @@
 											<th>Descripción</th>
 											<th>Detalle producto</th>
 
-											<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
-											<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+											<th >Editar</th>
+											<th >Eliminar</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -89,11 +89,11 @@
 													producto</a></td>
 
 
-											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+											<td ><a
 												th:href="@{/producto/updateproducto/{id}(id=${producto.id})}"
 												class="btn btn-primary"><i class="fas fa-edit"
 													style="font-size: 20px"></i></a></td>
-											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+											<td ><a
 												th:href="@{/producto/delete/{id}(id=${producto.id})}"
 												class="btn btn-danger"><i class="fas fa-trash-alt"
 													style="font-size: 20px"></i></a></td>
