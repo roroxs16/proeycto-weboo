@@ -1,5 +1,6 @@
 package com.poseidonapp.prototipo.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +25,7 @@ import com.poseidonapp.prototipo.service.RolService;
 import com.poseidonapp.prototipo.service.UsuarioService;
 
 @Controller
+@RequestMapping("/usuario")
 public class UserController {
 
 	@Autowired
@@ -37,39 +40,37 @@ public class UserController {
 	List<Rol> rolesList ;
 	
 	//agrega usuario
-	@GetMapping("/formulariousuario")
+	@RequestMapping("/formulariousuario")
 	public String formularioRegistro(Model model) {
 	
 	
 		model.addAttribute("nuevousuario", new Usuario());
-		
+
 		
 		return "registro";
 		
 	}
-	//guarda la categoria
+
 	@PostMapping("/saveusuario")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
-		if (result.hasErrors()) {
-            return "registro";
-        }
+	public String formularioUsuarioSave(@Valid @ModelAttribute("nuevousuario") Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws IOException  {
 		
-		rolesList =  rolService.findAl();
+		if(result.hasErrors()) {
+			return "registro";
+		}
+		
+		rolesList =  rolService.findAll();
 		
 		String password = usuario.getPassword();
 		
-		passwordEncoder.encode(password);
 		
-		usuario.setPassword(password);
+		usuario.setPassword(passwordEncoder.encode(password));
 		
-		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
 		
 		usuarioService.save(usuario);
-		redirectAttrs
-        .addFlashAttribute("mensaje", "Categoria agregada correctamente")
-        .addFlashAttribute("clase", "success");
-		status.setComplete();
-		return "redirect:/login";
+		
+		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
+
+		return "redirect:/";
 	
 	}
 	

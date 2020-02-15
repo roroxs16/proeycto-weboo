@@ -13,11 +13,13 @@ public class RolServiceIML implements RolService {
 
 	@Autowired
 	private RolRepository rolRepo;
-	
+
 	@Override
-	public List<Rol> findAl() {
-		
+	public List<Rol> findAll() {
+		// TODO Auto-generated method stub
 		return rolRepo.findAll();
 	}
+	
+
 
 }

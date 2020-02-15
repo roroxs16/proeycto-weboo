@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 import com.poseidonapp.prototipo.model.Rol;
 
 public interface RolService {
-	List <Rol> findAl();
+	List <Rol> findAll();
 }
