@@ -34,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poseidonapp.prototipo.model.Categoria;
 import com.poseidonapp.prototipo.model.Producto;
+import com.poseidonapp.prototipo.service.CarritoService;
 import com.poseidonapp.prototipo.service.CategoriaService;
 import com.poseidonapp.prototipo.service.ProductoService;
 
@@ -47,6 +48,17 @@ public class ProductoController {
 	
 	@Autowired
 	private CategoriaService categoriaService;
+	
+	@Autowired
+	private CarritoService carritoService;
+	
+	
+	//------------------------ Agregar carrito
+	public String añadirProductoCarrito() {
+		Producto producto=new Producto();
+		
+		return"listaproductos";
+	}
 
 	@RequestMapping("/")
 	public String listarCatalogo(Model model) {
@@ -138,7 +150,7 @@ public class ProductoController {
 	
 	@GetMapping(value="/uploads/{filename:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
-		Path pathFoto = Paths.get("uploads").resolve(filename).toAbsolutePath();
+		Path pathFoto = Paths.get("src//main//resources//static/imgProducto").resolve(filename).toAbsolutePath();
 	
 		Resource recurso = null;
 		try {
@@ -171,7 +183,8 @@ public class ProductoController {
 	        .addFlashAttribute("mensaje", "Producto eliminado correctamente")
 	        .addFlashAttribute("clase", "warning");
 			
-			Path rootPath =Paths.get("uploads").resolve(producto.getImagen()).toAbsolutePath();
+			if(producto.getImagen()!=null) {
+			Path rootPath =Paths.get("src//main//resources//static/imgProducto").resolve(producto.getImagen()).toAbsolutePath();
 			File archivo= rootPath.toFile();
 			
 			if(archivo.exists()&& archivo.canRead()) {
@@ -181,7 +194,7 @@ public class ProductoController {
 			}
 			
 		}
-		
+		}
 		
 		return "redirect:/categoria/listcategoria/"+aux;
     }

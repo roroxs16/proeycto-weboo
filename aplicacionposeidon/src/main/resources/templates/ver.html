@@ -23,47 +23,59 @@
 <body>
 
 
- <div th:insert="navbar">...</div>
+	<div th:insert="navbar">...</div>
 
- 
- 	<div class="container py-4">
- 	<div class="card bg-light">
-	 	<div class= "card-header">
-	 	
-	 			<h5 th:text="${producto.nombreProducto}"></h5>
-	 			
-	 	</div>
-	 	<div class="card-body">
-	 		<img class="img-thumbnail rounded float-left" style="max-width: 25%;" th:src="@{'/producto/uploads/' +${producto.imagen}}"/>
-	 		
-	 		<ul class="list-group">
-	 		
-	 		   <label for="nombreCategoria" class="col-form-label">Valor ($ CL)</label> 
-	 			<li class="list-group-item"	th:text="'$'+${producto.valor}"></li>
-	 			<label for="nombreCategoria" class="col-form-label">Descripción</label> 
-	 			<li class="list-group-item"	th:text="${producto.descripcion}"></li>
-	 			<label for="nombreCategoria" class="col-form-label">Cantidad (kg)</label> 
-	 			<li class="list-group-item"	th:text="${producto.cantidad}+'Kg'"></li>
-	 		</ul>
-	 		<br>
-	 		<div>
-	 		<a class="btn btn-warning" th:href="@{/compra/}"
-											 title="Añadir al carrito" style="color:white;">
-											 <i class="fas fa-cart-plus" style="color:white;"></i> Añadir al carrito</a>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header">
+
+				<h5 th:text="${producto.nombreProducto}"></h5>
+
 			</div>
-	 	</div>
- 	</div>
- 	</div>
- 	<div style="padding-left: 800px; padding-bottom: 5px;">
- 	<a class="btn btn-secondary" th:href="@{'/categoria/listcategoria/' + ${producto.categoria.id}} "
-						style="margin: auto;"> Volver a productos </a>
-						
-					<a class="btn btn-secondary" th:href="@{/categoria/}"
-						style="margin: auto;"> Volver a categorias </a>
-						
+			<div class="card-body">
+				<img class="img-thumbnail rounded float-left"
+					style="max-width: 25%;"
+					th:src="@{'/producto/uploads/' +${producto.imagen}}" />
+
+				<ul class="list-group">
+
+					<label for="nombreCategoria" class="col-form-label">Valor
+						($ CL)</label>
+					<li class="list-group-item" th:text="'$'+${producto.valor}"></li>
+					<label for="nombreCategoria" class="col-form-label">Descripción</label>
+					<li class="list-group-item" th:text="${producto.descripcion}"></li>
+					<label for="nombreCategoria" class="col-form-label">Cantidad
+						(kg)</label>
+					<li class="list-group-item" th:text="${producto.cantidad}+'Kg'"></li>
+				</ul>
+				<br>
+				<div style="padding-left: 700px; padding-bottom: 5px;">
+				Cantidad
+				<select id="producto.cantidad" name="producto.cantidad">
+						<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
+							th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
+					</select>
+					<a class="btn btn-warning" th:href="@{/compra/}"
+						title="Añadir al carrito" style="color: white;"> <i
+						class="fas fa-cart-plus" style="color: white;"></i> Añadir al
+						carrito
+					</a> 
+
 				</div>
- 
-<div th:insert="footer"></div>
+			</div>
+		</div>
+	</div>
+	<div style="padding-left: 800px; padding-bottom: 5px;">
+		<a class="btn btn-secondary"
+			th:href="@{'/categoria/listcategoria/' + ${producto.categoria.id}} "
+			style="margin: auto;"> Volver a productos </a> <a
+			class="btn btn-secondary" th:href="@{/categoria/}"
+			style="margin: auto;"> Volver a categorias </a>
+
+	</div>
+
+	<div th:insert="footer"></div>
 
 
 </body>
