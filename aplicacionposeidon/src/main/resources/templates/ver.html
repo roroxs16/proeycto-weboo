@@ -47,16 +47,18 @@
 					<li class="list-group-item" th:text="${producto.descripcion}"></li>
 					<label for="nombreCategoria" class="col-form-label">Cantidad
 						(kg)</label>
-					<li class="list-group-item" th:text="${producto.cantidad}+'Kg'"></li>
+					<li class="list-group-item" th:text="${producto.cantidad}+' Unidades '"></li>
 				</ul>
 				<br>
 				<div style="padding-left: 700px; padding-bottom: 5px;">
 				Cantidad
-				<select id="producto.cantidad" name="producto.cantidad">
+				<select name="cantidadcarrito" th:object="${producto}">
 						<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
 							th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
 					</select>
-					<a class="btn btn-warning" th:href="@{/compra/}"
+				
+
+					<a class="btn btn-warning" th:href="@{/carrito/formulariocarrito/{id}/{cantidadproducto}/(id=${producto.id}, cantidadproducto=${cantidad})}"
 						title="Añadir al carrito" style="color: white;"> <i
 						class="fas fa-cart-plus" style="color: white;"></i> Añadir al
 						carrito

@@ -49,16 +49,7 @@ public class ProductoController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	@Autowired
-	private CarritoService carritoService;
 	
-	
-	//------------------------ Agregar carrito
-	public String añadirProductoCarrito() {
-		Producto producto=new Producto();
-		
-		return"listaproductos";
-	}
 
 	@RequestMapping("/")
 	public String listarCatalogo(Model model) {
@@ -80,9 +71,9 @@ public class ProductoController {
 	
 	
 	@GetMapping("/formularioproducto/{categoriaId}")
-	public String formularioProducto(@PathVariable(value="categoriaId") int clienteId, Model model) {
+	public String formularioProducto(@PathVariable(value="categoriaId") int categoriaId, Model model) {
 		
-		Categoria categoria= categoriaService.findId(clienteId);
+		Categoria categoria= categoriaService.findId(categoriaId);
 		
 		if(categoria==null) {
 			return "redirect:/";
