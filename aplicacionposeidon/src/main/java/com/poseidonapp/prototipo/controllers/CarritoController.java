@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poseidonapp.prototipo.model.Carrito;
 import com.poseidonapp.prototipo.model.Producto;
@@ -22,9 +25,12 @@ public class CarritoController {
 	 private CarritoService carritoService;
 	 
 	//------------------------ Agregar carrito
-	 @GetMapping("/formulariocarrito/{id}/{cantidadproducto}")
-		public String añadirProductoCarrito(@PathVariable (value="id") int productoId,@PathVariable (value="cantidadproducto") int cantidad_producto) {
+	// @GetMapping("/formulariocarrito/{id}/{cantidadproducto}")
+	 @RequestMapping(value = "/formulariocarrito",method=RequestMethod.POST)
+	 public String añadirProductoCarrito(@RequestParam (value="id") int productoId,@RequestParam (value="cantidadproducto") int cantidad_producto, RedirectAttributes flash) {
 			Producto producto= productoService.findOne(productoId);
+			
+			
 			
 			Carrito carrito= new Carrito();
 			carrito.setProducto(producto);
@@ -32,9 +38,14 @@ public class CarritoController {
 			carrito.setPrecio(producto.getValor());
 			carrito.setSubtotal(carrito.getCantidad_producto()*carrito.getPrecio());
 			
-			carritoService.save(carrito);
+			producto.setCantidad(producto.getCantidad()-cantidad_producto);
 			
-			return "listaproductos";
+			carritoService.save(carrito);
+			flash
+	        .addFlashAttribute("mensaje", "Producto agregado al carrito correctamente")
+	        .addFlashAttribute("clase", "success");
+			
+			return "redirect:/categoria/";
 			
 		}
 }
