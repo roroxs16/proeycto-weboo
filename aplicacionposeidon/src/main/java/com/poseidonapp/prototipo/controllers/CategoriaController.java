@@ -68,7 +68,8 @@ public class CategoriaController {
 	@PostMapping("/savecategoriasucces")
 	public String formularioCategoriaSave(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws IOException  {
 		if (result.hasErrors()) {
-            return "addcategoria";
+           // return "addcategoria";
+          //  return "redirect:/categoria/";
         }
 		
 		categoriaService.save(categoria);
