@@ -1,5 +1,6 @@
 package com.poseidonapp.prototipo.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,43 +40,39 @@ public class UserController {
 	List<Rol> rolesList ;
 	
 	//agrega usuario
-	@GetMapping("/formulariousuario")
+	@RequestMapping("/formulariousuario")
 	public String formularioRegistro(Model model) {
 	
 	
 		model.addAttribute("nuevousuario", new Usuario());
-	//	System.out.println("Entra aca");
+
 		
 		return "registro";
 		
 	}
 
 	@PostMapping("/saveusuario")
-	public String formularioUsuarioSave(@Valid @ModelAttribute Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
+	public String formularioUsuarioSave(@Valid @ModelAttribute("nuevousuario") Usuario usuario, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws IOException  {
 		
-		if (result.hasErrors()) {
-            return "registro";
-        }
-		
-	//	System.out.println("entra aca");
+		if(result.hasErrors()) {
+			return "registro";
+		}
 		
 		rolesList =  rolService.findAll();
 		
 		String password = usuario.getPassword();
+		
+		
 		usuario.setPassword(passwordEncoder.encode(password));
 		
-	//	System.out.println(usuario);
 		
 		usuarioService.save(usuario);
 		
 		usuarioService.saveUsuarioRoles(usuario.getId(), rolesList.get(1).getId());
-	
-		status.setComplete();
-		
+
 		return "redirect:/";
 	
 	}
-		
-		
 	
 }
+

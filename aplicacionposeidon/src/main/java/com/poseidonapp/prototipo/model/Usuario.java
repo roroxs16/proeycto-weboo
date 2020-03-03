@@ -8,10 +8,17 @@ import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.poseidonapp.prototipo.validator.ValidAge;
+import com.poseidonapp.prototipo.validator.ValidRut;
 
 @Entity
 @Table(name = "usuario")
@@ -20,39 +27,54 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	@NotEmpty
+	
+	@NotBlank(message="Campo obligatorio (*)")
+	@NotEmpty(message="Debe ingresar su Nombre")
+	@Size(min=3,max=150, message="El apellido ingresado debe tener mas de 3 caracteres")
 	@Column(name = "nombre")
 	private String nombre;
-
-	@NotEmpty
+	
+	@NotBlank(message="Campo obligatorio (*)")
+	@NotEmpty(message="Debe ingresar su Apellido")
+	@Size(min=3,max=150, message="El apellido ingresado debe tener mas de 3 caracteres")
 	@Column(name = "apellidos")
 	private String apellidos;
 
-	@NotEmpty
+	@NotBlank(message="Campo obligatorio (*)")
+	@NotEmpty(message="Debe ingresar una Password")
 	@Column(name = "password")
 	private String password;
 
 	// este es el usuario de logeo
 	@NotEmpty
 	@Email
+	@NotEmpty(message="Debe ingresar un correo electronico valido")
 	@Column(name = "correo", unique = true)
 	private String correo;
-
+	
+	@NotBlank(message="Campo obligatorio (*)")
+	@NotEmpty(message="Debe ingresar una dirección valida")
 	@Column(name = "direccion")
 	private String direccion;
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Column(name = "fecha_nacimiento")
+	
+	@ValidAge(message = "El Socio debe ser mayor de tres años")
+	@NotNull(message="Campo obligatorio (*)")
+	@Past(message = "La fecha de pago debe ser anterior a la fecha actual")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 
-	@NotNull
+	@NotBlank(message="Campo obligatorio (*)")
+	@ValidRut(message="Ingrese un Rut válido")
 	@Column(name = "run")
 	private String run;
-
+	
+	@NotBlank(message="Campo obligatorio (*)")
+	@NotEmpty(message="Debe ingresar una ciudad valida")
 	@Column(name = "ciudad")
 	private String ciudad;
 
+	@NotNull(message="Campo obligatorio (*)")
+	@Range(min=100000000, max=999999999 , message="Ingrese un número de teléfono de 9 digitos")
 	@Column(name = "telefono")
 	private Long telefono;
 
