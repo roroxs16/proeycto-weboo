@@ -46,6 +46,7 @@ public class Usuario implements Serializable {
 	private String password;
 
 	// este es el usuario de logeo
+	@NotEmpty
 	@Email
 	@NotEmpty(message="Debe ingresar un correo electronico valido")
 	@Column(name = "correo", unique = true)
@@ -78,12 +79,11 @@ public class Usuario implements Serializable {
 	private Long telefono;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Rol> roles;
+	private List<Rol> roles;
 
-
-	public Usuario(int id, String nombre, String apellidos, String password, @Email String correo, String direccion,
-			Date fechaNacimiento, String run, String ciudad, Long telefono, List<Rol> roles) {
-		super();
+	public Usuario(int id, @NotEmpty String nombre, @NotEmpty String apellidos, @NotEmpty String password,
+			@NotEmpty @Email String correo, String direccion, Date fechaNacimiento, @NotNull String run, String ciudad,
+			Long telefono, List<Rol> roles) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -97,15 +97,11 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-
-
+	
 
 	public Usuario() {
 
 	}
-
-
-
 
 	public List<Rol> getRoles() {
 		return roles;
@@ -199,5 +195,9 @@ public class Usuario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8345568794830008231L;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
