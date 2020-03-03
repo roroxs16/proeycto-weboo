@@ -64,15 +64,15 @@
 
 		<div class="logo">
 
-			<a href="/">Poseidon <img src="/img/poseidon-blanco.png"
-				style="color: white; width: 15%; height: 50px;">
+			<a href="/"> <img src="/img/logotipo.png"
+				style="color: white; width: 20%; height: 50px;">
 			</a>
 
 		</div>
 
 
 
-		<div class="container">
+		<div class="container" style="margin-left:-7%">
 
 			<div class="collapse navbar-collapse justify-content-between"
 				id="navcol-1">
@@ -129,6 +129,12 @@
 							<span th:text="|Bienvenido : |"></span><span
 								sec:authentication="name"></span>
 						</div></li> -->
+						
+					<li sec:authorize="!isAuthenticated()"><div>
+							<a class="btn d-flex align-items-center align-self-center "
+								role="button" th:href="@{/usuario/formulariousuario/}">Regístrate</a>
+						</div></li>	
+					
 
 					<li class="nav-item" role="presentation"
 						style="padding-left: 10px;"><a class="nav-link"
