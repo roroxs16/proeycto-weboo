@@ -17,35 +17,41 @@
 <body>
 
 <div th:insert="navbar">...</div>
-    <div class="container my-5">
-        <h3> Añadir Categoria</h3>
-        <div >
+    
+     <div class="container my-5 ">
+        <div class="card bg-light" >
+        <div class= "card-header">
+        <h3 > Agregar Categoria</h3>
+        </div>
+        
             <div class="card-body">
                 <div class="col-md-10">
                     <form action="#" th:action="@{/categoria/savecategoriasucces}" th:object="${categoria}" method="post">
                         <div class="row">
                             <div class="form-group col-md-8">
-                                <label for="nombreCategoria" class="col-form-label">Categoria</label> 
-                                <input type="text" th:field="*{nombreCategoria}" class="form-control" id="nombreCategoria" placeholder="Mariscos, Pescados"> 
+                            <input type="hidden" th:field="*{id}" name="id" id="id">
+                                <label for="nombreCategoria" class="col-form-label" style="font-weight: 600;">Nombre Categoria</label> 
+                                <input type="text" th:field="*{nombreCategoria}" class="form-control" id="nombreCategoria" required> 
                                 <span th:if="${#fields.hasErrors('nombreCategoria')}" th:errors="*{nombreCategoria}" class="text-danger"></span>
                             </div>
                             
 
-                            <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary" value="Guardar">
-                            </div>
                             
-                            <div class="col-md-6">
-                                <a  href="/categoria/" class="btn btn-danger" > Cancelar </a>
+                            <div class="col-md-6" style="margin-left: 60%;"  >
+                            
+                            	<input style="float: right;"  type="submit" class="btn btn-primary" value="Guardar">
+                                <a style="float: right;margin-right: 10px;" href="/categoria/" class="btn btn-danger" > Cancelar </a>
+                                
                             </div>
+
 
 
                         </div>
-                    </form>
+                    </form></div>
                 </div>
             </div>
         </div>
-    </div>
+    
     <div th:insert="footer"></div>
 </body>
 

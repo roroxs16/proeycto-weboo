@@ -59,7 +59,7 @@ public class ProductoController {
 	public String detalleProducto(@PathVariable(value="id") int id ,Model model) {
 		
 		Producto producto= productoService.findOne(id);
-		
+		model.addAttribute("producto", productoService.listAll());
 		model.addAttribute("producto", producto);
 		
 		return "ver";
@@ -90,7 +90,7 @@ public class ProductoController {
 	@RequestMapping(value = "/saveproductosucces",method=RequestMethod.POST)
 	public String formularioProductoSave(@Valid Producto producto, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash ) throws Exception {
 		if (result.hasErrors()) {
-            return "addproducto";
+         //   return "addproducto";
         }
 		if(!foto.isEmpty()) {
 		
