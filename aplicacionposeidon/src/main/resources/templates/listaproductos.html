@@ -9,7 +9,7 @@
 
 <title>Poseidon</title>
 
-
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
@@ -37,13 +37,9 @@
 	</div>
 
 
-	<div class="container my-2" style="padding-bottom: 20px">
+	<div class="container my-2" style="padding-bottom: 100px">
 
 		<div class="card-body">
-		
-	
-		
-		
 		<br>
 			<div th:switch="${productos}">
 				<!-- Para dar los mensajes de redirectAtribbutes -->
@@ -72,13 +68,9 @@
 									<td th:text="${producto.nombreProducto}"></td>
 									<td th:text="${producto.valor}"></td>
 									<td th:text="${producto.cantidad}"></td>
-									<td><a class="btn btn-info btn-xs"
+									<td><a class="btn btn-yellow"
 											th:href="@{/producto/ver/} + ${producto.id}" title="Ver detalle producto
 											" ><i class="far fa-eye " ></i></a></td>
-											
-									<!-- td><a class="btn btn-warning" th:href="@{/carrito/formulariocarrito/{id}/1 (id=${producto.id})}"
-											 title="Añadir al carrito" >
-											 <i class="fas fa-cart-plus" style="color:white;"></i></a></td-->
 
 								</tr>
 							</tbody>

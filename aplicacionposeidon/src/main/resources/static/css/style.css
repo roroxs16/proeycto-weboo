@@ -1,0 +1,40 @@
+.btn.btn-danger {
+    color: #bc2525 !important;
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+
+.btn.btn-primary {
+    color: #000099 !important;
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+
+.btn.btn-success {
+    color: #fff;
+    background-color: #319836 !important;
+    border-color: #319836 !important;
+}
+
+.btn.btn-yellow {
+    color: #fff;
+    background-color: #ea9c1b !important;
+    border-color: #ea9c1b !important;
+}
+
+.btn.btn-light {
+    color: #319836 !important;
+    background-color: #fff !important;
+    border-color: #319836  !important;
+}
+
+.btn.btn-info {
+    color: #fff !important;
+    background-color: #1E847F !important;
+    border-color: #1E847F  !important;    
+}
+
+ul.list-group {
+    padding-left: 30px !important;
+}
+

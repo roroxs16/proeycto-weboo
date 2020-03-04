@@ -1,6 +1,7 @@
 package com.poseidonapp.prototipo.controllers;
 
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +46,9 @@ public class CategoriaController {
 	
 	//funcionalidad de listar categorias
 	@RequestMapping("/")
-	public String listarCategoria(Model model) {
+	public String listarCategoria(@Valid @ModelAttribute("categoria") Categoria categoria,  BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) {
 		model.addAttribute("categorias", categoriaService.listAll());
+		model.addAttribute("categoria", new Categoria());
 		
 		return "listcategoria";
 	}
@@ -64,9 +66,10 @@ public class CategoriaController {
 	}
 	//guarda la categoria
 	@PostMapping("/savecategoriasucces")
-	public String formularioCategoriaSave(@Valid @ModelAttribute Categoria categoria, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws Exception  {
+	public String formularioCategoriaSave(@Valid @ModelAttribute("categoria") Categoria categoria, BindingResult result, Model model,SessionStatus status,RedirectAttributes redirectAttrs) throws IOException  {
 		if (result.hasErrors()) {
-            return "addcategoria";
+           // return "addcategoria";
+          //  return "redirect:/categoria/";
         }
 		
 		categoriaService.save(categoria);
@@ -88,7 +91,7 @@ public class CategoriaController {
 		}
 		
 		model.addAttribute("productos", categoria.getProductos());
-		model.addAttribute("categoria",categoria);
+		model.addAttribute("categoria", categoria);
 		
 		return "verproductos";
 	}
