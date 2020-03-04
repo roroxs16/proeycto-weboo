@@ -58,7 +58,7 @@
 									<th>Valor ($ CL)</th>
 									<th>Cantidad (Kg)</th>
 									<th>Ver detalle</th>
-									<th>Añadir al carrito</th>
+									<!--th>Añadir al carrito</th><-->
 								</tr>
 							</thead>
 
@@ -71,13 +71,11 @@
 									<td><a class="btn btn-yellow"
 											th:href="@{/producto/ver/} + ${producto.id}" title="Ver detalle producto
 											" ><i class="far fa-eye " ></i></a></td>
-									<td><a class="btn btn-info" th:href="@{/compra/}"
-											 title="Añadir al carrito" >
-											 <i class="fas fa-cart-plus" style="color:white;"></i></a></td>
 
 								</tr>
 							</tbody>
 						</table>
+						
 						<div style="padding-left: 940px; padding-bottom: 5px;">
 							<a class="btn btn-secondary" th:href="@{/categoria/}"
 						style="margin: auto;"> Ir a categorias </a>

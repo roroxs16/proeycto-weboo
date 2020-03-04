@@ -1,6 +1,8 @@
 package com.poseidonapp.prototipo.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -42,41 +44,39 @@ public class Producto {
 		private Categoria  categoria;
 
 	
+	//	@OneToMany(mappedBy="carritoProducto", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+		//private List<Carrito> carritos;
 		
-		@ManyToMany(mappedBy = "productos")
-	    private Set<Detalle> detalles = new HashSet<>();		
 		
-		public Producto() {
-			
-		} 
-
-		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
-				@NotEmpty String descripcion, String imagen, Categoria categoria) {
-			
-			this.id = id;
-			this.nombreProducto = nombreProducto;
-			this.cantidad = cantidad;
-			this.valor = valor;
-			this.descripcion = descripcion;
-			this.imagen = imagen;
-			this.categoria = categoria;
-		}
-
+				
+		
+		
 		public int getId() {
 			return id;
+		}
+
+		public Producto() {
+			super();
 		}
 
 		public void setId(int id) {
 			this.id = id;
 		}
 
-	
 		public String getNombreProducto() {
 			return nombreProducto;
 		}
 
 		public void setNombreProducto(String nombreProducto) {
 			this.nombreProducto = nombreProducto;
+		}
+
+		public int getCantidad() {
+			return cantidad;
+		}
+
+		public void setCantidad(int cantidad) {
+			this.cantidad = cantidad;
 		}
 
 		public int getValor() {
@@ -103,22 +103,28 @@ public class Producto {
 			this.imagen = imagen;
 		}
 
-		public int getCantidad() {
-			return cantidad;
-		}
-
-		public void setCantidad(int cantidad) {
-			this.cantidad = cantidad;
-		}
-
-		
-
 		public Categoria getCategoria() {
 			return categoria;
 		}
 
 		public void setCategoria(Categoria categoria) {
 			this.categoria = categoria;
+		}
+
+	
+
+		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
+				@NotEmpty String descripcion, String imagen, Categoria categoria
+				) {
+			
+			this.id = id;
+			this.nombreProducto = nombreProducto;
+			this.cantidad = cantidad;
+			this.valor = valor;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+			this.categoria = categoria;
+			
 		}
 
 		@Override
@@ -133,13 +139,7 @@ public class Producto {
 			return total;
 		}
 
-		public Set<Detalle> getDetalles() {
-			return detalles;
-		}
-
-		public void setDetalles(Set<Detalle> detalles) {
-			this.detalles = detalles;
-		}
+		
 		
 		
 }

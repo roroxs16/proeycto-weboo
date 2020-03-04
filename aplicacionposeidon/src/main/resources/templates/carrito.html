@@ -33,18 +33,25 @@
 					<th>Cantidad</th>
 					<th>Nombre</th>
 					<th>Valor unitario ($ CL)</th>
+					<th>Fecha</th>
 					<th>Valor total ($ CL)</th>
+					<th>Eliminar</th>
 				</thead>
 				<tbody>
-					<tr>
-						<td><input type="number" 
-									class="form-control" id="cantidad" placeholder="1" style="width:100px"></td>
-						<td>Salmon</td>
-						<td>100</td>
-						<td>200</td>
+					<tr th:each="carrito: ${carritos}">
+					
+						
+									<td th:text="${carrito.cantidad_producto}"></td>
+						            <td th:text="${carrito.nombreProducto}"></td>
+									<td th:text="${carrito.precio}"></td>
+									<td th:text="${carrito.fecha}"></td>
+									<td th:text="${carrito.subtotal}"></td>
+						<td><a th:href="@{/carrito/delete/{id}(id=${carrito.id})}"
+											class="btn btn-danger"><i  class="fas fa-trash-alt"></i></a></td>
 					</tr>
 					<tr>
-					<td colspan="3"><b >Total compra ($ CL)</b></td>
+					<td colspan="4"><b >Total compra ($ CL)</b></td>
+					
 					<td><input type="number" 
 									class="form-control" id="total" placeholder="10000" style="width:200px"></td>
 					</tr>
