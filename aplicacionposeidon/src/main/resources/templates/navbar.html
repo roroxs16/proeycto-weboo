@@ -106,8 +106,9 @@
 						role="button" aria-haspopup="true" aria-expanded="false"
 						sec:authorize="isAuthenticated()"> Mi cuenta </a>
 						<div class="dropdown-menu">
-						 <a class="dropdown-item" href="#"
-								style="color: black !important">Configuración</a>
+				<!--  		 <a class="dropdown-item" th:href="@{/usuario/formularioupdateusuario/{id}(id=${usuario.id})}"
+						  style="color: black !important">Configuración</a> -->
+						  
 							
 								<form class="dropdown-item" id="logoutForm" th:action="@{/logout}" method="post">
 									<a style="color: black !important; cursor: pointer"
