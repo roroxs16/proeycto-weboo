@@ -56,14 +56,16 @@ public class CarritoController {
 			
 		}
 	 
+	 
+	 
 	 //Listar carritos, no estoy seguro de si esta sea una funcionalidad, OJO EL DE AQUI EN ADELANTE EL CRUD ESTÄ INCOMPLETO
-	 @RequestMapping("/")
+	 @RequestMapping("/compra")
 		public String listarCatalogo(Model model) {
 			model.addAttribute("carritos", carritoService.listAll());
 			
-			return "listacarritos";
+			return "carrito";
 		}
-	 
+	 @GetMapping("/delete/{id}")
 	 public String deleteCarrito(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttrs) throws Exception {
 	        
 	        
@@ -72,11 +74,11 @@ public class CarritoController {
 	        .addFlashAttribute("clase", "warning");
 	        carritoService.deleteById(id);
 	       
-			return "redirect:/listacarritos";
+			return "redirect:/carrito";
 	    }
 	 
 	//-----------------update----------------------
-			@RequestMapping(value={"/formularioupdatecategoria/{id}"}, method = RequestMethod.GET)
+			@RequestMapping(value={"/formularioupdatecarrito/{id}"}, method = RequestMethod.GET)
 		    public String formularioUpdateCarrito(Model model, @PathVariable ("id") int id) {
 				
 		        if(id>0) {
@@ -89,7 +91,7 @@ public class CarritoController {
 		        return "updatecarrito";
 		    }
 		 
-		    @RequestMapping(value= "/updatecategoriasucces", method = RequestMethod.POST)
+		    @RequestMapping(value= "/updatecarritosucces", method = RequestMethod.POST)
 		    public String updateCategoria( Model model, @Valid @ModelAttribute ("carrito") Carrito carrito, BindingResult result, RedirectAttributes redirectAttrs) throws Exception {
 		    	if (result.hasErrors()) {
 		            return "updatecarrito";
