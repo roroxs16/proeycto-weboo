@@ -1,5 +1,12 @@
 package com.poseidonapp.prototipo.controllers;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -31,22 +38,31 @@ public class CarritoController {
 	 @Autowired
 	 private CarritoService carritoService;
 	 
+	
+	 
 	//------------------------ Agregar carrito
 	// @GetMapping("/formulariocarrito/{id}/{cantidadproducto}")
 	 @RequestMapping(value = "/formulariocarrito",method=RequestMethod.POST)
-	 public String añadirProductoCarrito(@RequestParam (value="id") int productoId,@RequestParam (value="cantidadproducto") int cantidad_producto, RedirectAttributes flash) {
+	 public String añadirProductoCarrito(@RequestParam (value="id") int productoId,@RequestParam (value="cantidadproducto") int cantidad_producto, RedirectAttributes flash) throws ParseException {
 			Producto producto= productoService.findOne(productoId);
-			
+			 ArrayList<Producto> listaProductos = new ArrayList<Producto>() ;
+			listaProductos.add(producto);
 			
 			
 			Carrito carrito= new Carrito();
-			carrito.setProducto(producto);
+			carrito.setProductos(listaProductos);
+			carrito.setNombreProducto(producto.getNombreProducto());
 			carrito.setCantidad_producto(cantidad_producto);
 			carrito.setPrecio(producto.getValor());
 			carrito.setSubtotal(carrito.getCantidad_producto()*carrito.getPrecio());
-			
+			Date fecha = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			String fechaTexto = formatter.format(fecha);
+			carrito.setFecha(fechaTexto);
+			carrito.setEstado(true);
+            
 			producto.setCantidad(producto.getCantidad()-cantidad_producto);
-			
+			carritoService.saveProductoCarritos(carrito.getId(), productoId);
 			carritoService.save(carrito);
 			flash
 	        .addFlashAttribute("mensaje", "Producto agregado al carrito correctamente")
@@ -58,11 +74,13 @@ public class CarritoController {
 	 
 	 
 	 
+	 
 	 //Listar carritos, no estoy seguro de si esta sea una funcionalidad, OJO EL DE AQUI EN ADELANTE EL CRUD ESTÄ INCOMPLETO
 	 @RequestMapping("/compra")
 		public String listarCatalogo(Model model) {
 			model.addAttribute("carritos", carritoService.listAll());
-			
+		
+
 			return "carrito";
 		}
 	 @GetMapping("/delete/{id}")

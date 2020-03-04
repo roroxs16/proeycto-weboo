@@ -14,4 +14,6 @@ public interface CarritoService {
 
 	Optional<Carrito> findId(int id);
 
+	void saveProductoCarritos(int i, int j);
+
 }

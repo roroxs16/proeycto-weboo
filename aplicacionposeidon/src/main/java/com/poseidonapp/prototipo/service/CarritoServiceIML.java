@@ -34,5 +34,15 @@ public class CarritoServiceIML implements CarritoService{
 		// TODO Auto-generated method stub
 		return carritoRepository.findById(id);
 	}
+//	@Override
+	/*public void saveProductoCarritos(int i, int j) {
+		  carritoRepository.saveProducto_Carritos(i, j);
+		
+	}*/
+	@Override
+	public void saveProductoCarritos(int i, int j) {
+		carritoRepository.saveCarrito_Productos(i, j);
+		
+	}
 
 }

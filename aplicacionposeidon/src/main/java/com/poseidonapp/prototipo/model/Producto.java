@@ -44,13 +44,19 @@ public class Producto {
 		private Categoria  categoria;
 
 	
-		@OneToMany(mappedBy="carritoProducto", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-		private List<Carrito> carritos;
+	//	@OneToMany(mappedBy="carritoProducto", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+		//private List<Carrito> carritos;
+		
+		
 				
 		
 		
 		public int getId() {
 			return id;
+		}
+
+		public Producto() {
+			super();
 		}
 
 		public void setId(int id) {
@@ -105,17 +111,7 @@ public class Producto {
 			this.categoria = categoria;
 		}
 
-		public List<Carrito> getCarrito() {
-			return carritos;
-		}
-
-		public void setCarrito(List<Carrito> carrito) {
-			this.carritos = carrito;
-		}
-
-		public Producto() {
-			carritos= new ArrayList<Carrito>();
-		}
+	
 
 		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
 				@NotEmpty String descripcion, String imagen, Categoria categoria
