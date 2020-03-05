@@ -57,7 +57,7 @@ public class Usuario implements Serializable {
 	@Column(name = "direccion")
 	private String direccion;
 	
-	@ValidAge(message = "El Socio debe ser mayor de tres años")
+	@ValidAge(message = "El Socio debe ser mayor de 18 años")
 	@NotNull(message="Campo obligatorio (*)")
 	@Past(message = "La fecha de pago debe ser anterior a la fecha actual")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
