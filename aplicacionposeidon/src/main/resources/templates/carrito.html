@@ -40,17 +40,11 @@
 					
 				
 					<tr th:each="pv: ${productoVenta}" > 
-					
-						
-						
-						
-									
-									
+				
 									<td th:text="${pv.producto.nombreProducto}"></td>
 									<td th:text="${pv.cantidad_producto}"></td>
 									<td th:text="${pv.producto.valor}"></td>
 									<td th:text="${pv.subtotal}"></td>
-									
 
 						           
 						<td>  <a th:href="@{/venta/delete/{id}(id=${pv.id})}"
