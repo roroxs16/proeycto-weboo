@@ -48,16 +48,19 @@ public class Venta implements Serializable{
 
 	@OneToMany(mappedBy="venta", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<ProductoVenta> productosVenta;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="usuario_id")
+	private Usuario usuario;
 
-
-	public Venta(int id, @NotNull int total, @NotEmpty String fecha, Boolean estado,
-			List<ProductoVenta> productosVenta) {
-		
+	public Venta(int id, @NotNull int total, @NotEmpty String fecha, Boolean estado, List<ProductoVenta> productosVenta,
+			Usuario usuario) {
 		this.id = id;
 		this.total = total;
 		this.fecha = fecha;
 		this.estado = estado;
 		this.productosVenta = productosVenta;
+		this.usuario = usuario;
 	}
 
 
@@ -113,6 +116,15 @@ public class Venta implements Serializable{
 
 	public void setProductosVenta(List<ProductoVenta> productosVenta) {
 		this.productosVenta = productosVenta;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 
