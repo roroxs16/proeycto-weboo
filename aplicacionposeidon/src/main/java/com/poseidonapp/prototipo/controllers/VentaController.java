@@ -104,7 +104,10 @@ public class VentaController {
 	        ProductoVenta pv=productoVentaService.findId(id);
 	        Producto p=pv.getProducto();
 	        p.setCantidad(p.getCantidad()+pv.getCantidad_producto());
+	       int index= p.getProductosVenta().indexOf(pv);
+	       p.getProductosVenta().remove(index);
 		     productoVentaService.deleteById(id);
+		     productoService.save(p);
 	        redirectAttrs
 	        .addFlashAttribute("mensaje", "Eliminado correctamente")
 	        .addFlashAttribute("clase", "warning");
