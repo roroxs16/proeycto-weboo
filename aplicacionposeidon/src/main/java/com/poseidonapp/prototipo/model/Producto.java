@@ -43,89 +43,108 @@ public class Producto {
 		@JoinColumn(name = "categoria_producto_id", nullable = false)
 		private Categoria  categoria;
 
+		@OneToMany(mappedBy="producto", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+		private List<ProductoVenta> productosVenta;
+	  
+		
+		
 	
-	//	@OneToMany(mappedBy="carritoProducto", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-		//private List<Carrito> carritos;
+		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
+				@NotEmpty String descripcion, String imagen, Categoria categoria) {
+			this.id = id;
+			this.nombreProducto = nombreProducto;
+			this.cantidad = cantidad;
+			this.valor = valor;
+			this.descripcion = descripcion;
+			this.imagen = imagen;
+			this.categoria = categoria;
+		}
 		
-		
-				
-		
-		
+
+		public Producto() {
+			productosVenta= new ArrayList<ProductoVenta>();
+		}
+
+
 		public int getId() {
 			return id;
 		}
 
-		public Producto() {
-			super();
-		}
 
 		public void setId(int id) {
 			this.id = id;
 		}
 
+
 		public String getNombreProducto() {
 			return nombreProducto;
 		}
+
 
 		public void setNombreProducto(String nombreProducto) {
 			this.nombreProducto = nombreProducto;
 		}
 
+
 		public int getCantidad() {
 			return cantidad;
 		}
+
 
 		public void setCantidad(int cantidad) {
 			this.cantidad = cantidad;
 		}
 
+
 		public int getValor() {
 			return valor;
 		}
+
 
 		public void setValor(int valor) {
 			this.valor = valor;
 		}
 
+
 		public String getDescripcion() {
 			return descripcion;
 		}
+
 
 		public void setDescripcion(String descripcion) {
 			this.descripcion = descripcion;
 		}
 
+
 		public String getImagen() {
 			return imagen;
 		}
+
 
 		public void setImagen(String imagen) {
 			this.imagen = imagen;
 		}
 
+
 		public Categoria getCategoria() {
 			return categoria;
 		}
+
 
 		public void setCategoria(Categoria categoria) {
 			this.categoria = categoria;
 		}
 
-	
 
-		public Producto(int id, @NotEmpty String nombreProducto, @NotNull int cantidad, @NotNull int valor,
-				@NotEmpty String descripcion, String imagen, Categoria categoria
-				) {
-			
-			this.id = id;
-			this.nombreProducto = nombreProducto;
-			this.cantidad = cantidad;
-			this.valor = valor;
-			this.descripcion = descripcion;
-			this.imagen = imagen;
-			this.categoria = categoria;
-			
+		public List<ProductoVenta> getProductosVenta() {
+			return productosVenta;
 		}
+
+
+		public void setProductosVenta(List<ProductoVenta> productosVenta) {
+			this.productosVenta = productosVenta;
+		}
+
 
 		@Override
 		public String toString() {

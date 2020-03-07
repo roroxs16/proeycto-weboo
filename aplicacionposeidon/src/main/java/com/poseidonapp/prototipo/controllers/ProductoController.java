@@ -34,13 +34,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.poseidonapp.prototipo.model.Categoria;
 import com.poseidonapp.prototipo.model.Producto;
-import com.poseidonapp.prototipo.service.CarritoService;
+import com.poseidonapp.prototipo.service.VentaService;
 import com.poseidonapp.prototipo.service.CategoriaService;
 import com.poseidonapp.prototipo.service.ProductoService;
 
 @Controller
 @RequestMapping("/producto")
-@SessionAttributes("producto")
 public class ProductoController {
 
 	@Autowired
@@ -80,7 +79,9 @@ public class ProductoController {
 		}
 		
 		Producto producto= new Producto();
+		
 		producto.setCategoria(categoria);
+		System.out.println(producto);
 		model.addAttribute("producto", producto);
 		
 		return "addproducto";
@@ -92,6 +93,7 @@ public class ProductoController {
 	
 	@RequestMapping(value = "/saveproductosucces",method=RequestMethod.POST)
 	public String formularioProductoSave(@Valid Producto producto, BindingResult result, Model model, @RequestParam("file") MultipartFile foto, RedirectAttributes flash ) throws Exception {
+		System.out.println(producto);
 		if (result.hasErrors()) {
          //   return "addproducto";
         }
@@ -129,9 +131,10 @@ public class ProductoController {
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println(producto);
 		
 		productoService.save(producto);
+		System.out.println(producto);
 		flash
         .addFlashAttribute("mensaje", "Productos actualizados")
         .addFlashAttribute("clase", "success");
