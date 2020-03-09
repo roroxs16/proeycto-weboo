@@ -14,7 +14,7 @@ public interface VentaService {
 
 	void deleteById(int id);
 
-	Optional<Venta> findId(int id);
+	public Venta findId(int id);
 
 
 
