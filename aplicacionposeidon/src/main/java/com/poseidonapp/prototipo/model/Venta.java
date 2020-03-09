@@ -34,11 +34,11 @@ public class Venta implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull
+
 	@Column(name="total")
 	private int total;
 	
-	@NotEmpty
+	
 	@Column(name="fecha")
 	private String fecha;
 	
@@ -50,7 +50,7 @@ public class Venta implements Serializable{
 	private List<ProductoVenta> productosVenta;
 
 
-	public Venta(int id, @NotNull int total, @NotEmpty String fecha, Boolean estado,
+	public Venta(int id, int total, String fecha, Boolean estado,
 			List<ProductoVenta> productosVenta) {
 		
 		this.id = id;

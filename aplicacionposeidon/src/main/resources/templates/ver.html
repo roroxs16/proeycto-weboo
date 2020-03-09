@@ -50,21 +50,18 @@
 					<li class="list-group-item" th:text="${producto.cantidad}+' Unidades '"></li>
 				</ul>
 				<br>
-				<form th:action="@{/venta/formularioventa}" method="post">
-				<div style="padding-left: 700px; padding-bottom: 5px;">
-				Cantidad
-				
-				<select name="cantidadproducto" id="cantidadproducto" >
-						<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
-							th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
-					</select>
-				
-                       <input type=hidden  th:field="*{producto.id}" id="id">
-					<button class="btn btn-success" style="margin: auto;" type="submit">Añadir al carrito</button>
+					<form th:action="@{/venta/formularioventa}" method="post">
+						<div style="padding-left: 700px; padding-bottom: 5px;">
+							Cantidad: <select name="cantidadproducto" id="cantidadproducto">
+								<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
+									th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
+							</select> <input type=hidden th:field="*{producto.id}" id="id">
+							<button class="btn btn-success" style="margin: auto;"
+								type="submit">Añadir al carrito</button>
 
+						</div>
+					</form>
 				</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<div style="padding-left: 800px; padding-bottom: 5px;">

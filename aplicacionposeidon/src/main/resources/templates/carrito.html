@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
@@ -22,52 +21,60 @@
 <body>
 
 	<div th:insert="navbar">...</div>
-		<div style="padding-bottom: 100px">
-	<div class="container my-2" style="padding-bottom: 20px">
-	<h2>venta</h2>
-		<div class="card-body">
-		<form action="#" th:action="@{/compra/saveventasucces}" th:object="${venta}" method="post">
-			<table class="table table-bordered table-responsive-md table-hover">
-			
-				<thead class="thead-light">
-					<th>Nombre</th>
-					<th>Cantidad</th>
-					<th>Valor unitario ($ CL)</th>
-					<th>Valor total ($ CL)</th>
-					<th>Eliminar</th>
-				</thead>
-				<tbody>
-					
-				
-					<tr th:each="pv: ${productoVenta}" > 
-				
-									<td th:text="${pv.producto.nombreProducto}"></td>
-									<td th:text="${pv.cantidad_producto}"></td>
-									<td th:text="${pv.producto.valor}"></td>
-									<td th:text="${pv.subtotal}"></td>
+	<div style="padding-bottom: 100px">
+		<div class="container my-2" style="padding-bottom: 20px">
+			<h2>venta</h2>
+			<div class="card-body">
+				<table class="table table-bordered table-responsive-md table-hover">
 
-						           
-						<td>  <a th:href="@{/venta/delete/{id}(id=${pv.id})}"
-						
-											class="btn btn-danger"><i  class="fas fa-trash-alt"></i></a>  </td>
-					</tr>
+					<thead class="thead-light">
+						<th>Nombre</th>
+						<th>Cantidad</th>
+						<th>Valor unitario ($ CL)</th>
+						<th>Valor total ($ CL)</th>
+						<th>Eliminar</th>
+					</thead>
+					<tbody>
+
+
+						<tr th:each="pv: ${productoVenta}">
+
+							<td th:text="${pv.producto.nombreProducto}"></td>
+							<td th:text="${pv.cantidad_producto}"></td>
+							<td th:text="${pv.producto.valor}"></td>
+							<td th:text="${pv.subtotal}"></td>
+
+
+							<td><a th:href="@{/venta/delete/{id}(id=${pv.id})}"
+								class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+						</tr>
+
+						<tr>
+							<td colspan="4"><b>Total compra ($ CL)</b></td>
+
+							<td th:text="${total}"></td>
+						</tr>
+					</tbody>
+				</table>
+				
+						<a href="/producto/" style="margin: auto;" class="btn btn-primary">
+							Seguir comprando </a>
+				
+				<form th:action="@{/venta/finishsale}" method="post">
+					<div style="padding-left: 800px; padding-bottom: 5px;">
+					<!-- <input type="hidden" name="total" value="3" > -->
+					<input type="hidden" name="total" th:value="${total}">
+					<input type="hidden" name="venta" th:value="${venta}">
+						<button class="btn btn-success" style="margin: auto;"
+							type="submit">Comprar</button>
+					</div>
 					
-					<tr>
-					<td colspan="4"><b >Total compra ($ CL)</b></td>
-					
-					<td><input type="number" 
-									class="form-control" id="total" placeholder="10000" style="width:200px"></td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<div style="padding-left: 800px; padding-bottom: 5px;">
-				<a  href="/producto/"  style="margin: auto;" class="btn btn-primary" > Seguir comprando </a>
-            	<input type="submit" class="btn btn-success" value="Comprar">           	
-            </div>
-			</form>
+				</form>
+
+
+
+			</div>
 		</div>
-	</div>
 	</div>
 	<div th:insert="footer"></div>
 </body>
