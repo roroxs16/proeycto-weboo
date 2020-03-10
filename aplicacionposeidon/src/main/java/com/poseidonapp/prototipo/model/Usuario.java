@@ -106,7 +106,6 @@ public class Usuario implements Serializable {
 		this.ciudad = ciudad;
 		this.telefono = telefono;
 		this.roles = roles;
-		this.venta = ventas;
 	}
 
 		public Usuario() {
