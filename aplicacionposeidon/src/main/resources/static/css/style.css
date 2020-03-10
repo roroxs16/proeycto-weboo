@@ -4,6 +4,12 @@
     border-color: #fff !important;
 }
 
+.btn.btn-danger2 {
+    color: #fff !important;
+    background-color: #bc2525 !important;
+    border-color: #bc2525 !important;
+}
+
 .btn.btn-primary {
     color: #000099 !important;
     background-color: #fff !important;

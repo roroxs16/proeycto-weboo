@@ -23,9 +23,26 @@
 <body>
 
 	<div th:insert="navbar">...</div>
-	<div style="padding-bottom: 100px">
-		<div class="container my-2" style="padding-bottom: 20px">
-			<h2>venta</h2>
+	
+	<div class="container">
+		<nav style="background-color: white; padding-left: 20px;"
+			aria-label="breadcrumb">
+			<!--MIGAS DE PAN-->
+			<ol class="breadcrumb bg-white pl-0"
+				style="padding-top: 30px; padding-bottom: 5px;">
+
+				<li class="breadcrumb-item"><a href="/">Inicio </a></li>
+				<li class="breadcrumb-item active" aria-current="page">Detalle de compra</li>
+			</ol>
+		</nav>
+		<!--FIN MIGAS DE PAN-->
+	</div>
+	
+	<div class="container" style="padding: 0 36px 50px 36px;">
+
+		<div class="card" style="width: 1074px; height: 500px; border: none;">
+		<div id="print">
+				<h3>Detalle de compra</h3>
 			<div class="card-body">
 				<table class="table table-bordered table-responsive-md table-hover">
 
@@ -59,22 +76,34 @@
 					</tbody>
 				</table>
 				
-						<a href="/producto/" style="margin: auto;" class="btn btn-primary">
+				<div style="padding-left: 800px; padding-bottom: 5px;">
+					<a href="/producto/" style="margin-left: -28% !important;" class="btn btn-secondary">
 							Seguir comprando </a>
-				
-				<form th:action="@{/venta/finishsale}" method="post">
-					<div style="padding-left: 800px; padding-bottom: 5px;">
+					<a> <form th:action="@{/venta/finishsale}" method="post">
+					<div >
 					<!-- <input type="hidden" name="total" value="3" > -->
 					<input type="hidden" name="total" th:value="${total}">
 					<input type="hidden" name="venta" th:value="${venta}">
-						<button class="btn btn-success" style="margin: auto;"
+						<button class="btn btn-success" style="margin-top: -28%;
+    margin-left: 44%;"
 							type="submit">Comprar</button>
 					</div>
 					
-				</form>
+				</form>	
+				</a>
+							
+	</div>
+				
+				
+				
+				
+				
+						
+				
+				
 
 
-
+</div>
 			</div>
 		</div>
 	</div>
