@@ -8,8 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Poseidon</title>
+<link  rel="icon"   href="/img/logotipo-color.png" type="image/png" />
 
-<link rel="stylesheet" type="text/css"  href="/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
@@ -17,8 +18,38 @@
 	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
 <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
-</head>
+
+<script>
+	function pruebaDivAPdf() {
+		var pdf = new jsPDF('p', 'pt', 'letter');
+		source = $('#print')[0];
+
+		specialElementHandlers = {
+			'#bypassme' : function(element, renderer) {
+				return true
+			}
+		};
+		margins = {
+			top : 80,
+			bottom : 60,
+			left : 40,
+			width : 522
+		};
+
+		pdf.fromHTML(source, margins.left, // x coord
+		margins.top, { // y coord
+			'width' : margins.width,
+			'elementHandlers' : specialElementHandlers
+		},
+
+		function(dispose) {
+			pdf.save('Prueba.pdf');
+		}, margins);
+	}
+</script>
 <body>
 
 	<div th:insert="navbar">...</div>
@@ -39,84 +70,83 @@
 	</div>
 
 
-	<div class="container my-2" style="padding-bottom: 20px;">
+	<div class="container" style="padding: 0 36px 50px 36px;">
 
-			<div>
+		<div class="card" style="width: 1074px; height: 500px; border: none;">
+		<div id="print">
+				<h3>Categorías</h3>
+					<div th:switch="${categorias}">
+						<p
+							style="margin-top: -20px !important; margin-bottom: 20px !important">
+							<a th:href="@{/categoria/formulariocategoria}"
+								sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-light">
+								Agregar categoria</i>
+							</a>  <a style="float: right;" href="javascript:pruebaDivAPdf()"
+								class="btn btn-secondary">Descargar pdf</a>
 
-				<div class="card-body">
-					<div th:switch="${categorias}" >
-						<p style=" margin-top: -20px!important; margin-bottom:20px!important">
-								<a th:href="@{/categoria/formulariocategoria}"  sec:authorize="hasRole('ROLE_ADMIN')"
-								class="btn btn-light"> Agregar categoria</i> </a>
-								
-							
+
 							<!-- Para dar los mensajes de redirectAtribbutes -->
-							<div
-								th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
-								th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
-							</div>
+						<div
+							th:classappend="'alert-' + (${clase != null} ? ${clase} : info)"
+							th:if="${mensaje != null}" th:text="${mensaje}" class="alert">
+						</div>
 
-							<div style="margin: auto">
-								<h2 th:case="null">No hay categorias!</h2>
-								<div th:case="*">
+						<div style="margin: auto">
+							<h2 th:case="null">No hay categorias!</h2>
+							<div th:case="*">
 
-									<table
-										class="table table-bordered table-responsive-md table-hover">
-										<thead class="thead-light">
-											<tr>
+								<table
+									class="table table-bordered table-responsive-md table-hover">
+									<thead class="thead-light">
+										<tr>
 
-												<th>Nombre</th>
-												<th >Productos</th>
-												<th  sec:authorize="hasRole('ROLE_ADMIN')">Crear Producto</th>
-												<th sec:authorize="hasRole('ROLE_ADMIN')" >Editar</th>
-												<th  sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
-											</tr>
-										</thead>
+											<th>Nombre</th>
+											<th>Productos</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Crear Producto</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+											<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+										</tr>
+									</thead>
 
-										<tbody>
-											<tr th:each="categoria: ${categorias}">
+									<tbody>
+										<tr th:each="categoria: ${categorias}">
 
-												<td th:text="${categoria.nombreCategoria}"></td>
-												<td ><a
-													th:href="@{/categoria/listcategoria/{id}(id=${categoria.id})}"
-													class="btn btn-yellow"  >
-													<i class="fas fa-eye"
-														style="font-size: 20px"></i></a></td>
-												<td  sec:authorize="hasRole('ROLE_ADMIN')">
-													  <a
-													th:href="@{/producto/formularioproducto/} + ${categoria.id}"
-													class="btn btn-success btn-xs"><i class="fas fa-plus"
-														style="font-size: 20px"></i></a>
-												</td>
+											<td th:text="${categoria.nombreCategoria}"></td>
+											<td><a
+												th:href="@{/categoria/listcategoria/{id}(id=${categoria.id})}"
+												class="btn btn-yellow"> <i class="fas fa-eye"
+													style="font-size: 20px"></i></a></td>
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+												th:href="@{/producto/formularioproducto/} + ${categoria.id}"
+												class="btn btn-success btn-xs"><i class="fas fa-plus"
+													style="font-size: 20px"></i></a></td>
 
-												
-												
-												<td  sec:authorize="hasRole('ROLE_ADMIN')">
-												<a
-													th:href="@{/categoria/formularioupdatecategoria/{id}(id=${categoria.id})}"
-													class="btn btn-primary"><i class="fas fa-edit" 
-														style="font-size: 20px"></i></a>
-													
-												</td>
-												
 
-												<td  sec:authorize="hasRole('ROLE_ADMIN')"><a
-													th:href="@{/categoria/delete/{id}(id=${categoria.id})}"
-													class="btn btn-danger"><i class="fas fa-trash-alt"
-														style="font-size: 20px"></i></a></td>
 
-												
-											</tr>
-										</tbody>
-									</table>
-								</div>
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+												th:href="@{/categoria/formularioupdatecategoria/{id}(id=${categoria.id})}"
+												class="btn btn-primary"><i class="fas fa-edit"
+													style="font-size: 20px"></i></a></td>
+
+
+											<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+												th:href="@{/categoria/delete/{id}(id=${categoria.id})}"
+												class="btn btn-danger"><i class="fas fa-trash-alt"
+													style="font-size: 20px"></i></a></td>
+
+
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-	
-	
+		</div>
+	</div>
+
+
 	<div th:insert="footer"></div>
 </body>
 

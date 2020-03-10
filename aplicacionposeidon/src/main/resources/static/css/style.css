@@ -33,7 +33,11 @@
     background-color: #1E847F !important;
     border-color: #1E847F  !important;    
 }
-
+.btn-secondary {
+    color: #6c757d !important;
+    background-color: #fff !important;
+    border-color: #6c757d !important;
+}
 ul.list-group {
     padding-left: 30px !important;
 }

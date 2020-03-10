@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Poseidon</title>
+
+<link rel="stylesheet" type="text/css" href="/css/navbar.css" />
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" />
+<script type="text/javascript"
+	src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+<style>
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+	{
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+</style>
+</head>
+<body>
+
+	<div th:insert="navbar">...</div>
+	<div class="container my-5">
+		<div class="card bg-light">
+			<div class="card-header">
+				<h3>Formulario Registro</h3>
+			</div>
+			<div class="card-body">
+				<div class="col-md-10">
+
+
+					<form action="#" th:action="@{/usuario/formularioupdateusuario/}" th:object="${usuario}" method="post" 
+						enctype="multipart/form-data">
+
+
+					<div class="row">
+							<div class="col">
+							 <input type="hidden" th:field="*{usuario.id}" name="id" id="id">
+								<label class="col-form-label" style="font-weight: 600;">Nombre*</label>
+								 <input type="text" th:field="*{nombre}" class="form-control" id="nombre" >
+									<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-danger"></span>
+							</div>
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Apellidos*</label>
+								 <input type="text" th:field="*{apellidos}" class="form-control" id="apellidos">
+									<span th:if="${#fields.hasErrors('apellidos')}" th:errors="*{nombreCategoria}" class="text-danger"></span>	
+							</div>
+						</div>
+
+					<div class="row">
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Run*</label>
+								 <input type="text" th:field="*{run}" class="form-control" id="run" disabled>
+									<span th:if="${#fields.hasErrors('run')}" th:errors="*{run}" class="text-danger"></span>
+							</div>
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Correo*</label> 
+								<input type="text" th:field="*{correo}" class="form-control" id="correo">
+									<span th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}" class="text-danger"></span>	
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Fecha de Nacimiento</label>
+								 <input type="date" th:field="*{fechaNacimiento}" class="form-control" id="fechaNacimiento" placeholder="dd-mm-aaaa"  >
+							</div>
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Dirección</label> 
+								<input type="text" th:field="*{direccion}" class="form-control" id="direccion">
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Ciudad</label> 
+								<input type="text" th:field="*{ciudad}" class="form-control" id="ciudad">
+							</div>
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600;">Teléfono</label> 
+								<input type="number" th:field="*{telefono}" class="form-control" id="telefono" required>
+							</div>
+						</div>
+							<div class="row">
+							<div class="col">
+								<label class="col-form-label" style="font-weight: 600; ">Contraseña*</label> 
+								<input type="password" th:field="*{password}" class="form-control" id="password" style="width: 415px;">
+									<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>	
+							</div>
+						</div>
+						
+						
+						<div class="col-md-6" style="margin-left: 60%; margin-top: 20px;">
+						<input type="submit" class="btn btn-primary" style="float: right;" value="Guardar">
+							<a th:href="@{/}" class="btn btn-danger" style="float: right; margin-right: 10px;"> Cancelar </a>
+
+						</div>
+						
+						
+					</form>
+</div>
+				</div>
+			</div>
+		</div>
+		
+
+	<div th:insert="footer"></div>
+</body>
+</html>

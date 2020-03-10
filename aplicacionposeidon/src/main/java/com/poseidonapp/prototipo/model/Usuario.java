@@ -57,7 +57,7 @@ public class Usuario implements Serializable {
 	@Column(name = "direccion")
 	private String direccion;
 	
-	@ValidAge(message = "El Socio debe ser mayor de tres años")
+	@ValidAge(message = "El Socio debe ser mayor de 18 años")
 	@NotNull(message="Campo obligatorio (*)")
 	@Past(message = "La fecha de pago debe ser anterior a la fecha actual")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -81,9 +81,22 @@ public class Usuario implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Rol> roles;
 
-	public Usuario(int id, @NotEmpty String nombre, @NotEmpty String apellidos, @NotEmpty String password,
-			@NotEmpty @Email String correo, String direccion, Date fechaNacimiento, @NotNull String run, String ciudad,
-			Long telefono, List<Rol> roles) {
+	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Venta> venta; 
+	
+		
+
+		public Usuario(int id,
+			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar su Nombre") @Size(min = 3, max = 150, message = "El apellido ingresado debe tener mas de 3 caracteres") String nombre,
+			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar su Apellido") @Size(min = 3, max = 150, message = "El apellido ingresado debe tener mas de 3 caracteres") String apellidos,
+			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una Password") String password,
+			@NotEmpty @Email @NotEmpty(message = "Debe ingresar un correo electronico valido") String correo,
+			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una dirección valida") String direccion,
+			@NotNull(message = "Campo obligatorio (*)") @Past(message = "La fecha de pago debe ser anterior a la fecha actual") Date fechaNacimiento,
+			@NotBlank(message = "Campo obligatorio (*)") String run,
+			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una ciudad valida") String ciudad,
+			@NotNull(message = "Campo obligatorio (*)") @Range(min = 100000000, max = 999999999, message = "Ingrese un número de teléfono de 9 digitos") Long telefono,
+			List<Rol> roles, List<Venta> ventas) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -95,11 +108,10 @@ public class Usuario implements Serializable {
 		this.ciudad = ciudad;
 		this.telefono = telefono;
 		this.roles = roles;
+		this.venta = ventas;
 	}
 
-	
-
-	public Usuario() {
+		public Usuario() {
 
 	}
 
@@ -190,6 +202,18 @@ public class Usuario implements Serializable {
 	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
+
+	
+/*
+	public List<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(List<Venta> ventas) {
+		this.ventas = ventas;
+	}
+*/
+
 
 	/**
 	 * 
