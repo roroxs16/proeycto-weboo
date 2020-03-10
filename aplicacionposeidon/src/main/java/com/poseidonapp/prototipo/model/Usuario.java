@@ -81,9 +81,7 @@ public class Usuario implements Serializable {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Rol> roles;
 
-	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private List<Venta> venta; 
-	
+
 		
 
 		public Usuario(int id,
