@@ -34,6 +34,7 @@
                         <div class="row">
                             <div class="col">
                             	<input type="hidden" th:field="*{id}" name="id" id="id">
+                            	
                                 <label for="nombreCategoria" class="col-form-label" style="font-weight: 600;">Producto</label> 
                                 <input type="text" th:field="*{nombreProducto}" class="form-control" id="nombreProducto" placeholder="Salmon, Corvina" required> 
                                 <span th:if="${#fields.hasErrors('nombreProducto')}" th:errors="*{nombreProducto}" class="text-danger"></span>
@@ -64,13 +65,15 @@
                                 <input  style="width: 415px;" type="file" name="file" class="form-control" > 
                              </div>
                             </div>
-                            
+                            <input type="hidden" th:field="*{categoria.id}" name="categoria.id" id="categoria.id">
 
                             <div class="col-md-6" style="margin-left: 60%;margin-top: 20px;" >
+                            
                                 <input type="submit" style="float: right;" th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-success" value="Guardar">
                            	    <a type="submit" style="float: right;margin-right: 10px;" th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-secondary" >Cancelar</a>
                            	
                             </div>
+                            
 						</form>
                         </div>
                     

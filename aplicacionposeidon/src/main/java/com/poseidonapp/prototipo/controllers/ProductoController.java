@@ -195,9 +195,10 @@ public class ProductoController {
 	
 	@RequestMapping(value="/updateproducto/{id}", method=RequestMethod.GET)
 	public String formularioUpdateProducto(Model model, @PathVariable("id")int id) {
-
+   
 		if(id>0) {
 			Producto producto=productoService.findOne(id);
+			System.out.println(producto.toString());
 			model.addAttribute("producto",producto);
 		}else {
 			model.addAttribute("producto",new Producto());
@@ -212,6 +213,7 @@ public class ProductoController {
 		if (result.hasErrors()) {
             return "addproducto";
         }
+		System.out.println(producto.toString());
 		productoService.save(producto);
 		
 		
