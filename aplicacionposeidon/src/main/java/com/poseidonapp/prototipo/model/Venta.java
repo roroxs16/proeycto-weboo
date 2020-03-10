@@ -49,9 +49,9 @@ public class Venta implements Serializable{
 	@OneToMany(mappedBy="venta", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<ProductoVenta> productosVenta;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="usuario_id")
-	private Usuario usuario;
+	 @ManyToOne(fetch=FetchType.LAZY)
+	    @JoinColumn(name="usuario_id")
+	    private Usuario usuario;
 
 	public Venta(int id, @NotNull int total, @NotEmpty String fecha, Boolean estado, List<ProductoVenta> productosVenta,
 			Usuario usuario) {
@@ -118,6 +118,7 @@ public class Venta implements Serializable{
 		this.productosVenta = productosVenta;
 	}
 	
+	/*
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -126,7 +127,7 @@ public class Venta implements Serializable{
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
+*/
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

@@ -82,11 +82,11 @@ public class Usuario implements Serializable {
 	private List<Rol> roles;
 
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private List<Usuario> usuarios;
+	private List<Venta> venta; 
 	
 		
 
-public Usuario(int id,
+		public Usuario(int id,
 			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar su Nombre") @Size(min = 3, max = 150, message = "El apellido ingresado debe tener mas de 3 caracteres") String nombre,
 			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar su Apellido") @Size(min = 3, max = 150, message = "El apellido ingresado debe tener mas de 3 caracteres") String apellidos,
 			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una Password") String password,
@@ -96,7 +96,7 @@ public Usuario(int id,
 			@NotBlank(message = "Campo obligatorio (*)") String run,
 			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una ciudad valida") String ciudad,
 			@NotNull(message = "Campo obligatorio (*)") @Range(min = 100000000, max = 999999999, message = "Ingrese un número de teléfono de 9 digitos") Long telefono,
-			List<Rol> roles, List<Usuario> usuarios) {
+			List<Rol> roles, List<Venta> ventas) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -108,7 +108,7 @@ public Usuario(int id,
 		this.ciudad = ciudad;
 		this.telefono = telefono;
 		this.roles = roles;
-		this.usuarios = usuarios;
+		this.venta = ventas;
 	}
 
 		public Usuario() {
@@ -203,14 +203,16 @@ public Usuario(int id,
 		this.telefono = telefono;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	
+/*
+	public List<Venta> getVentas() {
+		return ventas;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setVentas(List<Venta> ventas) {
+		this.ventas = ventas;
 	}
-
+*/
 
 
 	/**
