@@ -94,7 +94,7 @@ public class Usuario implements Serializable {
 			@NotBlank(message = "Campo obligatorio (*)") String run,
 			@NotBlank(message = "Campo obligatorio (*)") @NotEmpty(message = "Debe ingresar una ciudad valida") String ciudad,
 			@NotNull(message = "Campo obligatorio (*)") @Range(min = 100000000, max = 999999999, message = "Ingrese un número de teléfono de 9 digitos") Long telefono,
-			List<Rol> roles, List<Venta> ventas) {
+			List<Rol> roles) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -106,7 +106,7 @@ public class Usuario implements Serializable {
 		this.ciudad = ciudad;
 		this.telefono = telefono;
 		this.roles = roles;
-		this.venta = ventas;
+
 	}
 
 		public Usuario() {
