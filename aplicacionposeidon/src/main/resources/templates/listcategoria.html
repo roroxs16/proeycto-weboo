@@ -48,11 +48,10 @@
 		
 				<h3>Categorías</h3>
 					<div th:switch="${categorias}">
-						<p
-							>
-							<a th:href="@{/categoria/formulariocategoria}" 
+						
+							<a th:href="@{/categoria/formulariocategoria}" style="margin: 0px 0 10px 0;"
 								sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-light">
-								Agregar categoria</i>
+								Agregar categoría</i>
 							</a> 
 
 
