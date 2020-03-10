@@ -65,7 +65,7 @@
                              </div>
                             </div>
                             
-
+<input type="hidden" th:field="*{categoria.id}" name="categoria.id" id="categoria.id">
                             <div class="col-md-6" style="margin-left: 60%;margin-top: 20px;" >
                                 <input type="submit" style="float: right;" th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-success" value="Guardar">
                            	    <a type="submit" style="float: right;margin-right: 10px;" th:href="@{/categoria/listcategoria/{id}(id=${producto.categoria.id})}" class="btn btn-secondary" >Cancelar</a>
