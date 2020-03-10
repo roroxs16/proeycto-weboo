@@ -24,11 +24,11 @@ public class AplicacionposeidonApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		String password ="12345";
+		String password ="admin";
 		
 		for(int i=0; i<2;i++) {
 			String bcryptPassword = passwordEncoder.encode(password);
-			System.out.println(bcryptPassword);
+		//	System.out.println(bcryptPassword);
 		}
 	}
 

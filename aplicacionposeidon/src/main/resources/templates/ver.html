@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -7,7 +8,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <title>Poseidon</title>
-<link  rel="icon"   href="/img/logotipo-color.png" type="image/png" />
 
 <link rel="stylesheet" type="text/css" href="/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/css/navbar.css" />
@@ -36,7 +36,7 @@
 			<div class="card-body">
 				<img class="img-thumbnail rounded float-left"
 					style="max-width: 25%;"
-					th:src="@{'/producto/uploads/' +${producto.imagen}}" />
+					th:src="@{'/producto/uploads/' +${producto.imagen}}" alt="Imagen no encontrada" />
 
 				<ul class="list-group">
 
@@ -50,21 +50,18 @@
 					<li class="list-group-item" th:text="${producto.cantidad}+' Unidades '"></li>
 				</ul>
 				<br>
-				<form th:action="@{/venta/formularioventa}" method="post">
-				<div style="padding-left: 700px; padding-bottom: 5px;">
-				Cantidad
-				
-				<select name="cantidadproducto" id="cantidadproducto" >
-						<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
-							th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
-					</select>
-				
-                       <input type=hidden  th:field="*{producto.id}" id="id">
-					<button class="btn btn-success" style="margin: auto;" type="submit">Añadir al carrito</button>
+					<form th:action="@{/venta/formularioventa}" method="post">
+						<div style="padding-left: 700px; padding-bottom: 5px;">
+							Cantidad: <select name="cantidadproducto" id="cantidadproducto">
+								<option th:each="i : ${#numbers.sequence(1,producto.cantidad)}"
+									th:value="${i}" th:text="${i}" th:selected="${i==1}"></option>
+							</select> <input type=hidden th:field="*{producto.id}" id="id">
+							<button class="btn btn-success" style="margin: auto;"
+								type="submit">Añadir al carrito</button>
 
+						</div>
+					</form>
 				</div>
-				</form>
-			</div>
 		</div>
 	</div>
 	<div style="padding-left: 800px; padding-bottom: 5px;">

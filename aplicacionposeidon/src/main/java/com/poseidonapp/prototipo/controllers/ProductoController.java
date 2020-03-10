@@ -131,10 +131,10 @@ public class ProductoController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(producto);
+	
 		
 		productoService.save(producto);
-		System.out.println(producto);
+
 		flash
         .addFlashAttribute("mensaje", "Productos actualizados")
         .addFlashAttribute("clase", "success");
@@ -212,7 +212,6 @@ public class ProductoController {
 		if (result.hasErrors()) {
             return "addproducto";
         }
-		System.out.println(producto);
 		productoService.save(producto);
 		
 		

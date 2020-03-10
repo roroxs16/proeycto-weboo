@@ -31,9 +31,9 @@ public class VentaServiceIML implements VentaService{
 		ventaRepository.deleteById(id);
 	}
 	@Override
-	public Optional<Venta> findId(int id) {
+	public Venta findId(int id) {
 		// TODO Auto-generated method stub
-		return ventaRepository.findById(id);
+		return ventaRepository.getOne(id);
 	}
 //	@Override
 	/*public void saveProductoCarritos(int i, int j) {
